@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 838.0 495.0" width="100%" height="100%">
+  <defs>
+    <pattern id="hatch-wood" width="40" height="5.5" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="2.75" x2="40" y2="2.75" stroke="#D5D0C5" stroke-width="0.65" />
+    </pattern>
+    <pattern id="hatch-tile" width="14" height="14" patternUnits="userSpaceOnUse">
+      <path d="M 14 0 L 0 0 0 14" fill="none" stroke="#CBD4DC" stroke-width="0.6" />
+    </pattern>
+    <pattern id="hatch-closet" width="8" height="8" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="8" x2="8" y2="0" stroke="#D2CEC4" stroke-width="0.6" />
+    </pattern>
+  </defs>
+  <rect width="838.0" height="495.0" fill="#FAF9F5" />
+  <text x="52.0" y="36" font-family="Georgia, serif" font-size="18" font-weight="bold" fill="#1C1B18">
+    Stratum Arch Studio — Professional Architectural CAD Plan (8.5m x 8.5m, 2F)
+  </text>
+  <line x1="52.0" y1="48" x2="786.0" y2="48" stroke="#D5D1C8" stroke-width="1" />
+  <text x="78.0" y="106.0" font-family="monospace" font-size="11.5" font-weight="bold" fill="#1C1B18">1F ARCHITECTURAL PLAN — 床面積 58.80㎡ (約17.79坪) / GL+0.0m / SLAB 0.22m</text>
+  <rect x="78.0" y="120.0" width="289.0" height="289.0" fill="#F4F2EC" stroke="#6E6D68" stroke-width="6.5" />
+  <line x1="93.3" y1="135.3" x2="222.5" y2="135.3" stroke="#C2BDB2" stroke-width="1.1" stroke-dasharray="3 3" />
+  <line x1="222.5" y1="135.3" x2="351.7" y2="135.3" stroke="#C2BDB2" stroke-width="1.1" stroke-dasharray="3 3" />
+  <line x1="93.3" y1="264.5" x2="222.5" y2="264.5" stroke="#C2BDB2" stroke-width="1.1" stroke-dasharray="3 3" />
+  <line x1="222.5" y1="264.5" x2="351.7" y2="264.5" stroke="#C2BDB2" stroke-width="1.1" stroke-dasharray="3 3" />
+  <line x1="93.3" y1="393.7" x2="222.5" y2="393.7" stroke="#C2BDB2" stroke-width="1.1" stroke-dasharray="3 3" />
+  <line x1="222.5" y1="393.7" x2="351.7" y2="393.7" stroke="#C2BDB2" stroke-width="1.1" stroke-dasharray="3 3" />
+  <line x1="93.3" y1="135.3" x2="93.3" y2="264.5" stroke="#C2BDB2" stroke-width="1.1" stroke-dasharray="3 3" />
+  <line x1="93.3" y1="264.5" x2="93.3" y2="393.7" stroke="#C2BDB2" stroke-width="1.1" stroke-dasharray="3 3" />
+  <line x1="222.5" y1="135.3" x2="222.5" y2="264.5" stroke="#C2BDB2" stroke-width="1.1" stroke-dasharray="3 3" />
+  <line x1="222.5" y1="264.5" x2="222.5" y2="393.7" stroke="#C2BDB2" stroke-width="1.1" stroke-dasharray="3 3" />
+  <line x1="351.7" y1="135.3" x2="351.7" y2="264.5" stroke="#C2BDB2" stroke-width="1.1" stroke-dasharray="3 3" />
+  <line x1="351.7" y1="264.5" x2="351.7" y2="393.7" stroke="#C2BDB2" stroke-width="1.1" stroke-dasharray="3 3" />
+  <line x1="93.3" y1="199.9" x2="222.5" y2="199.9" stroke="#D8D3C8" stroke-width="0.7" stroke-dasharray="3 3" />
+  <line x1="222.5" y1="199.9" x2="351.7" y2="199.9" stroke="#D8D3C8" stroke-width="0.7" stroke-dasharray="3 3" />
+  <line x1="93.3" y1="329.1" x2="222.5" y2="329.1" stroke="#D8D3C8" stroke-width="0.7" stroke-dasharray="3 3" />
+  <line x1="222.5" y1="329.1" x2="351.7" y2="329.1" stroke="#D8D3C8" stroke-width="0.7" stroke-dasharray="3 3" />
+  <rect x="208.9" y="128.5" width="87.0" height="84.3" fill="#EBF3F7" stroke="#6E6D68" stroke-width="3.6" />
+  <rect x="210.9" y="130.5" width="83.0" height="80.3" fill="url(#hatch-tile)" pointer-events="none" />
+  <rect x="220.6" y="138.7" width="18.1" height="7.6" fill="#FFFFFF" stroke="#555" stroke-width="1.0" />  <ellipse cx="229.6" cy="153.5" rx="8.1" ry="8.7" fill="#FFFFFF" stroke="#555" stroke-width="1.0" />
+  <rect x="257.9" y="139.2" width="30.6" height="22.1" fill="#FFFFFF" stroke="#555" stroke-width="1.0" />  <ellipse cx="273.2" cy="150.3" rx="9.8" ry="6.2" fill="#F4F9FC" stroke="#555" stroke-width="0.9" />
+  <rect x="225.2" y="170.3" width="54.4" height="38.1" fill="#FFFFFF" stroke="#555" stroke-width="1.2" />  <rect x="228.2" y="173.3" width="30.5" height="32.1" rx="8" fill="#F4F9FC" stroke="#555" stroke-width="1.0" />  <circle cx="243.5" cy="189.4" r="2.2" fill="none" stroke="#555" stroke-width="0.8" />
+  <rect x="222.1" y="210.3" width="26.0" height="5.0" fill="#EBF3F7" />  <line x1="222.1" y1="212.8" x2="222.1" y2="186.8" stroke="#444" stroke-width="1.3" />  <path d="M 222.1 186.8 A 26.0 26.0 0 0 0 248.1 212.8" fill="none" stroke="#666" stroke-width="0.85" />
+  <rect x="233.7" y="125.9" width="37.4" height="5.2" fill="#FFFFFF" stroke="#555" stroke-width="1.1" />  <line x1="233.7" y1="128.5" x2="271.1" y2="128.5" stroke="#4A7C9B" stroke-width="1.0" />
+  <text x="252.4" y="166.7" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="10" font-weight="bold" fill="#1C1B18">浴室・洗面脱衣・1Fトイレ</text>
+  <text x="252.4" y="178.7" text-anchor="middle" font-family="sans-serif" font-size="8.2" fill="#4A4843">(約3.9畳 / CH=2.22m)</text>
+  <rect x="86.5" y="128.5" width="121.0" height="84.3" fill="#EFECE4" stroke="#6E6D68" stroke-width="3.6" />
+  <rect x="88.5" y="130.5" width="117.0" height="80.3" fill="url(#hatch-tile)" pointer-events="none" />
+  <rect x="109.9" y="210.3" width="26.0" height="5.0" fill="#EFECE4" />  <line x1="109.9" y1="212.8" x2="109.9" y2="186.8" stroke="#444" stroke-width="1.3" />  <path d="M 109.9 186.8 A 26.0 26.0 0 0 0 135.9 212.8" fill="none" stroke="#666" stroke-width="0.85" />
+  <rect x="128.3" y="125.9" width="37.4" height="5.2" fill="#FFFFFF" stroke="#555" stroke-width="1.1" />  <line x1="128.3" y1="128.5" x2="165.7" y2="128.5" stroke="#4A7C9B" stroke-width="1.0" />
+  <text x="147.0" y="166.7" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="10" font-weight="bold" fill="#1C1B18">玄関ホール・SIC(土間収納)</text>
+  <text x="147.0" y="178.7" text-anchor="middle" font-family="sans-serif" font-size="8.2" fill="#4A4843">(約5.4畳 / CH=2.32m)</text>
+  <rect x="86.5" y="214.2" width="162.5" height="186.3" fill="#FBF7EE" stroke="#6E6D68" stroke-width="3.6" />
+  <rect x="88.5" y="216.2" width="158.5" height="182.3" fill="url(#hatch-wood)" pointer-events="none" />
+  <rect x="97.7" y="242.9" width="81.6" height="32.3" fill="#FFFFFF" stroke="#555" stroke-width="1.2" />  <rect x="104.2" y="248.7" width="21.2" height="20.7" fill="#FAFAFA" stroke="#555" stroke-width="0.9" />  <circle cx="110.0" cy="255.2" r="2.8" fill="none" stroke="#444" stroke-width="0.9" />  <circle cx="119.8" cy="255.2" r="2.8" fill="none" stroke="#444" stroke-width="0.9" />  <circle cx="114.9" cy="263.6" r="2.2" fill="none" stroke="#444" stroke-width="0.9" />  <rect x="140.2" y="248.1" width="29.4" height="22.0" rx="3" fill="#F4F9FC" stroke="#555" stroke-width="0.9" />
+  <rect x="161.6" y="324.9" width="61.2" height="32.3" fill="#FFFFFF" stroke="#555" stroke-width="1.0" rx="1" />
+  <rect x="122.1" y="211.7" width="26.0" height="5.0" fill="#FBF7EE" />  <line x1="122.1" y1="214.2" x2="122.1" y2="240.2" stroke="#444" stroke-width="1.3" />  <path d="M 122.1 240.2 A 26.0 26.0 0 0 1 148.1 214.2" fill="none" stroke="#666" stroke-width="0.85" />
+  <rect x="127.8" y="397.9" width="79.9" height="5.2" fill="#FFFFFF" stroke="#555" stroke-width="1.1" />  <line x1="127.8" y1="400.5" x2="207.7" y2="400.5" stroke="#4A7C9B" stroke-width="1.0" />
+  <text x="167.8" y="303.3" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="10" font-weight="bold" fill="#1C1B18">南向きLDK(リビング・ダイニング・キッチン)</text>
+  <text x="167.8" y="315.3" text-anchor="middle" font-family="sans-serif" font-size="8.2" fill="#4A4843">(約16.2畳 / CH=2.37m)</text>
+  <rect x="250.4" y="214.2" width="108.1" height="186.3" fill="#FBF8F1" stroke="#6E6D68" stroke-width="3.6" />
+  <rect x="252.4" y="216.2" width="104.1" height="182.3" fill="url(#hatch-wood)" pointer-events="none" />
+  <rect x="272.0" y="280.1" width="64.9" height="54.4" fill="#FFFFFF" stroke="#555" stroke-width="1.0" rx="1" />
+  <rect x="269.7" y="211.7" width="26.0" height="5.0" fill="#FBF8F1" />  <line x1="269.7" y1="214.2" x2="269.7" y2="240.2" stroke="#444" stroke-width="1.3" />  <path d="M 269.7 240.2 A 26.0 26.0 0 0 1 295.7 214.2" fill="none" stroke="#666" stroke-width="0.85" />
+  <rect x="277.9" y="397.9" width="53.0" height="5.2" fill="#FFFFFF" stroke="#555" stroke-width="1.1" />  <line x1="277.9" y1="400.5" x2="331.0" y2="400.5" stroke="#4A7C9B" stroke-width="1.0" />
+  <text x="304.4" y="303.3" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="10" font-weight="bold" fill="#1C1B18">和室(客間・タタミコーナー)</text>
+  <text x="304.4" y="315.3" text-anchor="middle" font-family="sans-serif" font-size="8.2" fill="#4A4843">(約10.8畳 / CH=2.32m)</text>
+  <line x1="297.3" y1="128.5" x2="358.5" y2="128.5" stroke="#1C1B18" stroke-width="3.2" />
+  <line x1="358.5" y1="128.5" x2="358.5" y2="212.8" stroke="#1C1B18" stroke-width="3.2" />
+  <line x1="93.3" y1="135.3" x2="93.3" y2="264.5" stroke="#1C1B18" stroke-width="3.2" />
+  <rect x="297.3" y="128.5" width="61.2" height="84.3" fill="#D5D1C8" stroke="#1C1B18" stroke-width="1.5" />
+  <text x="327.9" y="173.7" text-anchor="middle" font-family="monospace" font-size="8.5" font-weight="bold" fill="#1C1B18">室内階段ホール</text>
+  <rect x="86.5" y="128.5" width="13.6" height="13.6" fill="#1C1B18" />
+  <rect x="215.7" y="128.5" width="13.6" height="13.6" fill="#1C1B18" />
+  <rect x="344.9" y="128.5" width="13.6" height="13.6" fill="#1C1B18" />
+  <rect x="86.5" y="257.7" width="13.6" height="13.6" fill="#1C1B18" />
+  <rect x="215.7" y="257.7" width="13.6" height="13.6" fill="#1C1B18" />
+  <rect x="344.9" y="257.7" width="13.6" height="13.6" fill="#1C1B18" />
+  <rect x="86.5" y="386.9" width="13.6" height="13.6" fill="#1C1B18" />
+  <rect x="215.7" y="386.9" width="13.6" height="13.6" fill="#1C1B18" />
+  <rect x="344.9" y="386.9" width="13.6" height="13.6" fill="#1C1B18" />
+  <circle cx="252.4" cy="191.7" r="119.0" fill="none" stroke="#4A7C9B" stroke-width="0.8" stroke-dasharray="3 3" opacity="0.65" />
+  <circle cx="252.4" cy="191.7" r="9.5" fill="#4A7C9B" stroke="#FAF9F5" stroke-width="1.2" />
+  <circle cx="237.1" cy="170.7" r="9.5" fill="#5B7A5E" stroke="#FAF9F5" stroke-width="1.2" />
+  <text x="471.0" y="106.0" font-family="monospace" font-size="11.5" font-weight="bold" fill="#1C1B18">2F ARCHITECTURAL PLAN — 床面積 58.53㎡ (約17.71坪) / GL+2.9m / SLAB 0.22m</text>
+  <rect x="471.0" y="120.0" width="289.0" height="289.0" fill="#F4F2EC" stroke="#6E6D68" stroke-width="6.5" />
+  <line x1="486.3" y1="135.3" x2="615.5" y2="135.3" stroke="#C2BDB2" stroke-width="1.1" stroke-dasharray="3 3" />
+  <line x1="615.5" y1="135.3" x2="744.7" y2="135.3" stroke="#C2BDB2" stroke-width="1.1" stroke-dasharray="3 3" />
+  <line x1="486.3" y1="264.5" x2="615.5" y2="264.5" stroke="#C2BDB2" stroke-width="1.1" stroke-dasharray="3 3" />
+  <line x1="615.5" y1="264.5" x2="744.7" y2="264.5" stroke="#C2BDB2" stroke-width="1.1" stroke-dasharray="3 3" />
+  <line x1="486.3" y1="393.7" x2="615.5" y2="393.7" stroke="#C2BDB2" stroke-width="1.1" stroke-dasharray="3 3" />
+  <line x1="615.5" y1="393.7" x2="744.7" y2="393.7" stroke="#C2BDB2" stroke-width="1.1" stroke-dasharray="3 3" />
+  <line x1="486.3" y1="135.3" x2="486.3" y2="264.5" stroke="#C2BDB2" stroke-width="1.1" stroke-dasharray="3 3" />
+  <line x1="486.3" y1="264.5" x2="486.3" y2="393.7" stroke="#C2BDB2" stroke-width="1.1" stroke-dasharray="3 3" />
+  <line x1="615.5" y1="135.3" x2="615.5" y2="264.5" stroke="#C2BDB2" stroke-width="1.1" stroke-dasharray="3 3" />
+  <line x1="615.5" y1="264.5" x2="615.5" y2="393.7" stroke="#C2BDB2" stroke-width="1.1" stroke-dasharray="3 3" />
+  <line x1="744.7" y1="135.3" x2="744.7" y2="264.5" stroke="#C2BDB2" stroke-width="1.1" stroke-dasharray="3 3" />
+  <line x1="744.7" y1="264.5" x2="744.7" y2="393.7" stroke="#C2BDB2" stroke-width="1.1" stroke-dasharray="3 3" />
+  <line x1="486.3" y1="199.9" x2="615.5" y2="199.9" stroke="#D8D3C8" stroke-width="0.7" stroke-dasharray="3 3" />
+  <line x1="615.5" y1="199.9" x2="744.7" y2="199.9" stroke="#D8D3C8" stroke-width="0.7" stroke-dasharray="3 3" />
+  <line x1="486.3" y1="329.1" x2="615.5" y2="329.1" stroke="#D8D3C8" stroke-width="0.7" stroke-dasharray="3 3" />
+  <line x1="615.5" y1="329.1" x2="744.7" y2="329.1" stroke="#D8D3C8" stroke-width="0.7" stroke-dasharray="3 3" />
+  <rect x="601.9" y="128.5" width="87.0" height="84.3" fill="#EBF3F7" stroke="#6E6D68" stroke-width="3.6" />
+  <rect x="603.9" y="130.5" width="83.0" height="80.3" fill="url(#hatch-tile)" pointer-events="none" />
+  <rect x="613.6" y="138.7" width="18.1" height="7.6" fill="#FFFFFF" stroke="#555" stroke-width="1.0" />  <ellipse cx="622.6" cy="153.5" rx="8.1" ry="8.7" fill="#FFFFFF" stroke="#555" stroke-width="1.0" />
+  <rect x="650.9" y="139.2" width="30.6" height="22.1" fill="#FFFFFF" stroke="#555" stroke-width="1.0" />  <ellipse cx="666.2" cy="150.3" rx="9.8" ry="6.2" fill="#F4F9FC" stroke="#555" stroke-width="0.9" />
+  <rect x="615.1" y="210.3" width="26.0" height="5.0" fill="#EBF3F7" />  <line x1="615.1" y1="212.8" x2="615.1" y2="186.8" stroke="#444" stroke-width="1.3" />  <path d="M 615.1 186.8 A 26.0 26.0 0 0 0 641.1 212.8" fill="none" stroke="#666" stroke-width="0.85" />
+  <rect x="626.7" y="125.9" width="37.4" height="5.2" fill="#FFFFFF" stroke="#555" stroke-width="1.1" />  <line x1="626.7" y1="128.5" x2="664.1" y2="128.5" stroke="#4A7C9B" stroke-width="1.0" />
+  <text x="645.4" y="166.7" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="10" font-weight="bold" fill="#1C1B18">2Fトイレ・洗面コーナー</text>
+  <text x="645.4" y="178.7" text-anchor="middle" font-family="sans-serif" font-size="8.2" fill="#4A4843">(約3.9畳 / CH=2.22m)</text>
+  <rect x="479.5" y="128.5" width="121.0" height="84.3" fill="#EFECE4" stroke="#6E6D68" stroke-width="3.6" />
+  <rect x="481.5" y="130.5" width="117.0" height="80.3" fill="url(#hatch-tile)" pointer-events="none" />
+  <rect x="502.9" y="210.3" width="26.0" height="5.0" fill="#EFECE4" />  <line x1="502.9" y1="212.8" x2="502.9" y2="186.8" stroke="#444" stroke-width="1.3" />  <path d="M 502.9 186.8 A 26.0 26.0 0 0 0 528.9 212.8" fill="none" stroke="#666" stroke-width="0.85" />
+  <rect x="521.3" y="125.9" width="37.4" height="5.2" fill="#FFFFFF" stroke="#555" stroke-width="1.1" />  <line x1="521.3" y1="128.5" x2="558.7" y2="128.5" stroke="#4A7C9B" stroke-width="1.0" />
+  <text x="540.0" y="166.7" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="10" font-weight="bold" fill="#1C1B18">ウォークインクローゼット(WIC)・書斎</text>
+  <text x="540.0" y="178.7" text-anchor="middle" font-family="sans-serif" font-size="8.2" fill="#4A4843">(約5.4畳 / CH=2.32m)</text>
+  <rect x="479.5" y="214.3" width="146.2" height="139.1" fill="#FBF8F1" stroke="#6E6D68" stroke-width="3.6" />
+  <rect x="481.5" y="216.3" width="142.2" height="135.1" fill="url(#hatch-wood)" pointer-events="none" />
+  <rect x="507.7" y="249.9" width="54.4" height="68.0" fill="#FFFFFF" stroke="#555" stroke-width="1.1" />  <rect x="510.7" y="253.9" width="12.0" height="24.5" rx="2" fill="#FAF9F5" stroke="#666" stroke-width="0.8" />  <rect x="510.7" y="288.0" width="12.0" height="24.5" rx="2" fill="#FAF9F5" stroke="#666" stroke-width="0.8" />  <path d="M 526.2 249.9 Q 533.8 283.9 525.1 317.9" fill="none" stroke="#555" stroke-width="1.0" />
+  <rect x="510.4" y="211.7" width="26.0" height="5.0" fill="#FBF8F1" />  <line x1="510.4" y1="214.2" x2="510.4" y2="240.2" stroke="#444" stroke-width="1.3" />  <path d="M 510.4 240.2 A 26.0 26.0 0 0 1 536.4 214.2" fill="none" stroke="#666" stroke-width="0.85" />
+  <rect x="525.7" y="350.6" width="53.7" height="5.2" fill="#FFFFFF" stroke="#555" stroke-width="1.1" />  <line x1="525.7" y1="353.2" x2="579.5" y2="353.2" stroke="#4A7C9B" stroke-width="1.0" />
+  <text x="552.6" y="279.9" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="10" font-weight="bold" fill="#1C1B18">主寝室(マスターベッドルーム)</text>
+  <text x="552.6" y="291.9" text-anchor="middle" font-family="sans-serif" font-size="8.2" fill="#4A4843">(約10.9畳 / CH=2.32m)</text>
+  <rect x="627.1" y="214.3" width="124.4" height="139.1" fill="#FBF8F1" stroke="#6E6D68" stroke-width="3.6" />
+  <rect x="629.1" y="216.3" width="120.4" height="135.1" fill="url(#hatch-wood)" pointer-events="none" />
+  <rect x="647.1" y="249.9" width="54.4" height="68.0" fill="#FFFFFF" stroke="#555" stroke-width="1.1" />  <rect x="650.1" y="253.9" width="12.0" height="24.5" rx="2" fill="#FAF9F5" stroke="#666" stroke-width="0.8" />  <rect x="650.1" y="288.0" width="12.0" height="24.5" rx="2" fill="#FAF9F5" stroke="#666" stroke-width="0.8" />  <path d="M 665.6 249.9 Q 673.2 283.9 664.5 317.9" fill="none" stroke="#555" stroke-width="1.0" />
+  <rect x="651.5" y="211.7" width="26.0" height="5.0" fill="#FBF8F1" />  <line x1="651.5" y1="214.2" x2="651.5" y2="240.2" stroke="#444" stroke-width="1.3" />  <path d="M 651.5 240.2 A 26.0 26.0 0 0 1 677.5 214.2" fill="none" stroke="#666" stroke-width="0.85" />
+  <rect x="666.5" y="350.6" width="45.6" height="5.2" fill="#FFFFFF" stroke="#555" stroke-width="1.1" />  <line x1="666.5" y1="353.2" x2="712.1" y2="353.2" stroke="#4A7C9B" stroke-width="1.0" />
+  <text x="689.3" y="279.9" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="10" font-weight="bold" fill="#1C1B18">子供部屋A(南西洋室)</text>
+  <text x="689.3" y="291.9" text-anchor="middle" font-family="sans-serif" font-size="8.2" fill="#4A4843">(約9.2畳 / CH=2.32m)</text>
+  <rect x="479.5" y="354.8" width="272.0" height="45.9" fill="#EFECE4" stroke="#6E6D68" stroke-width="3.6" />
+  <rect x="481.5" y="356.8" width="268.0" height="41.9" fill="url(#hatch-tile)" pointer-events="none" />
+  <rect x="548.1" y="352.4" width="26.0" height="5.0" fill="#EFECE4" />  <line x1="548.1" y1="354.9" x2="548.1" y2="380.9" stroke="#444" stroke-width="1.3" />  <path d="M 548.1 380.9 A 26.0 26.0 0 0 1 574.1 354.9" fill="none" stroke="#666" stroke-width="0.85" />
+  <rect x="596.8" y="397.9" width="37.4" height="5.2" fill="#FFFFFF" stroke="#555" stroke-width="1.1" />  <line x1="596.8" y1="400.5" x2="634.2" y2="400.5" stroke="#4A7C9B" stroke-width="1.0" />
+  <text x="615.5" y="373.7" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="10" font-weight="bold" fill="#1C1B18">南面ワイドバルコニー</text>
+  <text x="615.5" y="385.7" text-anchor="middle" font-family="sans-serif" font-size="8.2" fill="#4A4843">(約6.7畳 / CH=2.32m)</text>
+  <line x1="690.3" y1="128.5" x2="751.5" y2="128.5" stroke="#1C1B18" stroke-width="3.2" />
+  <line x1="751.5" y1="128.5" x2="751.5" y2="212.8" stroke="#1C1B18" stroke-width="3.2" />
+  <line x1="486.3" y1="135.3" x2="486.3" y2="264.5" stroke="#1C1B18" stroke-width="3.2" />
+  <rect x="690.3" y="128.5" width="61.2" height="84.3" fill="#D5D1C8" stroke="#1C1B18" stroke-width="1.5" />
+  <text x="720.9" y="173.7" text-anchor="middle" font-family="monospace" font-size="8.5" font-weight="bold" fill="#1C1B18">室内階段ホール</text>
+  <rect x="479.5" y="128.5" width="13.6" height="13.6" fill="#1C1B18" />
+  <rect x="608.7" y="128.5" width="13.6" height="13.6" fill="#1C1B18" />
+  <rect x="737.9" y="128.5" width="13.6" height="13.6" fill="#1C1B18" />
+  <rect x="479.5" y="257.7" width="13.6" height="13.6" fill="#1C1B18" />
+  <rect x="608.7" y="257.7" width="13.6" height="13.6" fill="#1C1B18" />
+  <rect x="737.9" y="257.7" width="13.6" height="13.6" fill="#1C1B18" />
+  <rect x="479.5" y="386.9" width="13.6" height="13.6" fill="#1C1B18" />
+  <rect x="608.7" y="386.9" width="13.6" height="13.6" fill="#1C1B18" />
+  <rect x="737.9" y="386.9" width="13.6" height="13.6" fill="#1C1B18" />
+  <circle cx="645.4" cy="191.7" r="119.0" fill="none" stroke="#4A7C9B" stroke-width="0.8" stroke-dasharray="3 3" opacity="0.65" />
+  <circle cx="645.4" cy="191.7" r="9.5" fill="#4A7C9B" stroke="#FAF9F5" stroke-width="1.2" />
+  <circle cx="630.1" cy="170.7" r="9.5" fill="#5B7A5E" stroke="#FAF9F5" stroke-width="1.2" />
+</svg>

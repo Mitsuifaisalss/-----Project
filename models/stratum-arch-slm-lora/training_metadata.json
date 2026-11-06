@@ -1,0 +1,13 @@
+{
+  "mode": "local_pytorch_lora_fallback",
+  "base_model": "Qwen/Qwen2.5-7B-Instruct",
+  "dataset_path": "C:\\Users\\Faisal Mitsui\\Desktop\\大学授業\\ハッカソン\\初めて参加したやつ\\ハッカソン説明内容\\data\\train_stratum_bim.jsonl",
+  "num_train_samples": 475,
+  "num_eval_samples": 25,
+  "lora_r": 32,
+  "lora_alpha": 64,
+  "epochs": 3,
+  "learning_rate": 0.0002,
+  "final_training_loss": 4.6916,
+  "gguf_quant": "q4_k_m"
+}
