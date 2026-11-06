@@ -1,0 +1,22 @@
+# Node / Frontend
+node_modules/
+project/node_modules/
+dist/
+project/dist/
+.vite/
+project/.vite/
+
+# Python / Backend
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+
+# Runtime logs & temporary files
+logs/
+*.log
+.DS_Store
+Thumbs.db
+

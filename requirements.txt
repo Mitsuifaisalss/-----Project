@@ -1,0 +1,8 @@
+# STRATUM GEO-BIM Backend Dependencies (Python 3.10+)
+fastapi>=0.110.0
+uvicorn[standard]>=0.27.0
+pydantic>=2.6.0
+
+# Optional: For SLM QLoRA Training (backend/train_qlora.py)
+# torch>=2.1.0
+
