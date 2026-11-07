@@ -331,7 +331,11 @@ out tags geom;`;
 
     accurateBuildingName = target.tags.name ?? target.tags['addr:housename'] ?? null;
     const tagHousenumber = target.tags['addr:housenumber'];
-    const label = describeBuilding(target);
+    evidence.push({
+      label: '実測建物用途',
+      value: describeBuilding(target),
+      source: 'OSM'
+    });
     evidence.push({
       label: '実測建物フットプリント',
       value: `${bw.toFixed(1)}m × ${bd.toFixed(1)}m（多角形ポリゴン ${target.poly.length}頂点）`,
@@ -527,7 +531,7 @@ out tags geom;`;
     accurateTitle,
     siteStatus,
     sitePolygon,
-    buildingPolygon: target ? target.poly : null,
+    buildingPolygon,
     edgeLengths,
     width,
     depth,

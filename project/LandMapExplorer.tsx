@@ -120,14 +120,7 @@ export function blueprintForLand(land: {
     bp.rooms = [];
     bp.skeleton.columns = [];
     bp.skeleton.beams = [];
-    bp.openings = [];
     bp.site.floors = 1;
-    bp.metadata.title =
-      land.context?.siteStatus === 'parking_lot'
-        ? '現況コインパーキング（更地実測）'
-        : '現況更地（建築物なし・実測区画）';
-  } else if (land.context?.buildingName) {
-    bp.metadata.title = `${land.context.buildingName}（実測既存建物）`;
   }
   return bp;
 }
@@ -253,7 +246,7 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
         ? renderProArchitecturalCadSvg(landBlueprint, {
             floorFilter: 1,
             cadTheme: 'presentation_color',
-            labelStyle: 'jp_tatami'
+            labelStyle: 'japanese_tatami'
           })
         : '',
     [landBlueprint]
