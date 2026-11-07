@@ -12,7 +12,7 @@
 ---
 
 <<<<<<< HEAD
-## 📌 1. 背景と解決する社会課題（Why STRATUM GEO-BIM?）
+##  1. 背景と解決する社会課題（Why STRATUM GEO-BIM?）
 =======
 ##  1. 背景と解決する社会課題（Why STRATUM GEO-BIM?）
 >>>>>>> 3af0a65ba76d488b6cb8fbe0723cac1a58acb38f
@@ -31,7 +31,7 @@
 ---
 
 <<<<<<< HEAD
-## 🚀 2. 既存ソリューションとの決定的な差別化
+##  2. 既存ソリューションとの決定的な差別化
 =======
 ##  2. 既存ソリューションとの決定的な差別化
 >>>>>>> 3af0a65ba76d488b6cb8fbe0723cac1a58acb38f
@@ -46,7 +46,7 @@
 ---
 
 <<<<<<< HEAD
-## ✨ 3. 主要機能（Key Features）
+##  3. 主要機能（Key Features）
 
 ### ① 現場タブレット対応・GISランドスキャナー（`LandMapExplorer`）
 =======
@@ -89,7 +89,7 @@
 ---
 
 <<<<<<< HEAD
-## 🏗️ 4. システムアーキテクチャ
+##  4. システムアーキテクチャ
 
 ```mermaid
 flowchart LR
@@ -123,7 +123,7 @@ flowchart LR
 
 ---
 
-## 📦 5. 必要なライブラリ・動作環境（Dependencies & Requirements）
+##  5. 必要なライブラリ・動作環境（Dependencies & Requirements）
 
 ### 前提ランタイム環境
 - **Node.js**: `v18.0` 以上（推奨 `v20`〜`v24`） / `npm`
