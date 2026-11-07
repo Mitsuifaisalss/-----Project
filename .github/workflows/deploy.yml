@@ -34,7 +34,9 @@ jobs:
       - name: Build
         run: |
           cd project
-          npm run build
+          chmod -R +x node_modules/.bin || true
+          npx tsc -b
+          npx vite build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
