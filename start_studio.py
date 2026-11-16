@@ -30,14 +30,9 @@ from pathlib import Path
 
 
 def resolve_paths() -> tuple[Path, Path]:
-    """スクリプトの位置からワークスペースルートと project ディレクトリを特定する"""
-    here = Path(__file__).resolve().parent
-    if (here / "package.json").exists() and (here / "ai_bim_3d.tsx").exists():
-        project_dir = here
-        root_dir = here.parent if (here.parent / "backend").exists() else here
-    else:
-        root_dir = here
-        project_dir = here / "project"
+    """スクリプトの位置からワークスペースルートと frontend ディレクトリを特定する"""
+    root_dir = Path(__file__).resolve().parent
+    project_dir = root_dir / "frontend"
     return root_dir, project_dir
 
 
