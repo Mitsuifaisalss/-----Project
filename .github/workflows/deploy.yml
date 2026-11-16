@@ -28,12 +28,12 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd project
+          cd frontend
           npm install
 
       - name: Build
         run: |
-          cd project
+          cd frontend
           chmod -R +x node_modules/.bin || true
           npx tsc -b
           npx vite build
@@ -41,7 +41,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: project/dist
+          path: frontend/dist
 
   deploy:
     environment:
