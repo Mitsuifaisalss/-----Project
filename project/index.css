@@ -1,5 +1,42 @@
 @import "tailwindcss";
 
+/* 落ち着いたトーン: ネオンのcyanを製図ブルーに、青みのslateをニュートラルグレーに置き換え */
+@theme {
+  --font-sans: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic UI", "Meiryo", system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, "Noto Sans Mono", monospace;
+
+  --color-cyan-50: #f1f5f9;
+  --color-cyan-100: #dfe8f0;
+  --color-cyan-200: #c2d3e3;
+  --color-cyan-300: #a3bdd6;
+  --color-cyan-400: #86a6c6;
+  --color-cyan-500: #6788ab;
+  --color-cyan-600: #536f8f;
+  --color-cyan-700: #445a74;
+  --color-cyan-800: #384a5e;
+  --color-cyan-900: #2f3d4d;
+  --color-cyan-950: #1e2731;
+
+  --color-sky-300: #a3bdd6;
+  --color-sky-400: #86a6c6;
+
+  --color-slate-50: #f7f7f6;
+  --color-slate-100: #ededec;
+  --color-slate-200: #dcdcda;
+  --color-slate-300: #c2c2bf;
+  --color-slate-400: #9d9d99;
+  --color-slate-500: #797975;
+  --color-slate-600: #5d5d5a;
+  --color-slate-700: #474744;
+  --color-slate-800: #313130;
+  --color-slate-900: #222221;
+  --color-slate-950: #161615;
+}
+
+body {
+  background: #141414;
+}
+
 @keyframes fadeUp {
   from {
     opacity: 0;

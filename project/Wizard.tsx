@@ -276,8 +276,8 @@ function ChoiceButton({
       onClick={onClick}
       className={`text-left rounded-2xl ring-1 transition cursor-pointer ${
         selected
-          ? 'bg-cyan-400/15 ring-cyan-400 text-white shadow-lg shadow-cyan-500/10'
-          : 'bg-[#0B1222] ring-white/10 text-slate-200 hover:bg-[#111C33] hover:ring-white/20'
+          ? 'bg-cyan-400/15 ring-cyan-400 text-white shadow-lg'
+          : 'bg-[#1C1C1C] ring-white/10 text-slate-200 hover:bg-[#262626] hover:ring-white/20'
       } ${className}`}
     >
       {children}
@@ -379,15 +379,15 @@ export default function Wizard({ onOpenStudio, onBackToWelcome, initialLand }: W
   };
 
   return (
-    <div className="min-h-screen w-full bg-[#070B14] text-slate-100 antialiased">
+    <div className="min-h-screen w-full bg-[#141414] text-slate-100 antialiased">
       {/* ヘッダー */}
-      <header className="sticky top-0 z-30 border-b border-white/10 bg-[#070B14]/90 backdrop-blur-xl">
+      <header className="sticky top-0 z-30 border-b border-white/10 bg-[#141414]/90 backdrop-blur-xl">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             {onBackToWelcome && (
               <button
                 onClick={onBackToWelcome}
-                className="flex items-center gap-1.5 h-11 px-3.5 rounded-xl text-xs font-semibold ring-1 ring-white/15 bg-[#0B1222] text-slate-200 hover:bg-[#111C33] transition cursor-pointer"
+                className="flex items-center gap-1.5 h-11 px-3.5 rounded-xl text-xs font-semibold ring-1 ring-white/15 bg-[#1C1C1C] text-slate-200 hover:bg-[#262626] transition cursor-pointer"
               >
                 <ArrowLeft className="w-4 h-4 text-cyan-400" />
                 土地マップへ戻る
@@ -409,18 +409,18 @@ export default function Wizard({ onOpenStudio, onBackToWelcome, initialLand }: W
           </div>
 
           <div className="hidden md:flex items-center gap-2 font-mono text-xs text-slate-400">
-            <span className="px-2.5 py-1 rounded-lg bg-[#0B1222] ring-1 ring-white/10">01 土地マップ選択</span>
+            <span className="px-2.5 py-1 rounded-lg bg-[#1C1C1C] ring-1 ring-white/10">01 土地マップ選択</span>
             <span>→</span>
-            <span className="px-2.5 py-1 rounded-lg bg-cyan-400 text-[#070B14] font-bold">02 新築プラン比較</span>
+            <span className="px-2.5 py-1 rounded-lg bg-cyan-400 text-[#141414] font-bold">02 新築プラン比較</span>
             <span>→</span>
-            <span className="px-2.5 py-1 rounded-lg bg-[#0B1222] ring-1 ring-white/10">03 3D地下X線・CADスタジオ</span>
+            <span className="px-2.5 py-1 rounded-lg bg-[#1C1C1C] ring-1 ring-white/10">03 3D地下X線・CADスタジオ</span>
           </div>
         </div>
       </header>
 
       <main className="max-w-6xl mx-auto px-4 sm:px-6 py-8 space-y-9">
         {/* 00 土地の過去履歴・前面道路・周囲の建物環境からの地下埋設AI推論 */}
-        <section className="animate-fade-up bg-[#0B1222] ring-1 ring-cyan-400/40 rounded-3xl p-5 sm:p-6 space-y-4 shadow-xl">
+        <section className="animate-fade-up bg-[#1C1C1C] ring-1 ring-cyan-400/40 rounded-3xl p-5 sm:p-6 space-y-4 shadow-xl">
           <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-3">
             <div>
               <div className="font-mono text-xs text-cyan-400 font-bold flex items-center gap-1.5">
@@ -466,10 +466,10 @@ export default function Wizard({ onOpenStudio, onBackToWelcome, initialLand }: W
               <select
                 value={frontRoad}
                 onChange={(e) => setFrontRoad(e.target.value as FrontRoadDirection)}
-                className="w-full h-12 bg-[#070B14] ring-1 ring-white/15 rounded-xl px-3 text-xs sm:text-sm text-white cursor-pointer"
+                className="w-full h-12 bg-[#141414] ring-1 ring-white/15 rounded-xl px-3 text-xs sm:text-sm text-white cursor-pointer"
               >
                 {FRONT_ROAD_OPTIONS.map((r) => (
-                  <option key={r.id} value={r.id} className="bg-[#0B1222]">
+                  <option key={r.id} value={r.id} className="bg-[#1C1C1C]">
                     {r.label} — {r.note}
                   </option>
                 ))}
@@ -482,10 +482,10 @@ export default function Wizard({ onOpenStudio, onBackToWelcome, initialLand }: W
               <select
                 value={surrounding}
                 onChange={(e) => setSurrounding(e.target.value as SurroundingContextType)}
-                className="w-full h-12 bg-[#070B14] ring-1 ring-white/15 rounded-xl px-3 text-xs sm:text-sm text-white cursor-pointer"
+                className="w-full h-12 bg-[#141414] ring-1 ring-white/15 rounded-xl px-3 text-xs sm:text-sm text-white cursor-pointer"
               >
                 {SURROUNDING_OPTIONS.map((s) => (
-                  <option key={s.id} value={s.id} className="bg-[#0B1222]">
+                  <option key={s.id} value={s.id} className="bg-[#1C1C1C]">
                     {s.label} — {s.note}
                   </option>
                 ))}
@@ -494,7 +494,7 @@ export default function Wizard({ onOpenStudio, onBackToWelcome, initialLand }: W
           </div>
 
           {/* リアルタイムAI地下埋設推論レポート */}
-          <div className="bg-[#070B14] ring-1 ring-white/10 rounded-2xl p-4 space-y-2">
+          <div className="bg-[#141414] ring-1 ring-white/10 rounded-2xl p-4 space-y-2">
             <div className="flex flex-wrap items-center justify-between gap-2 text-xs">
               <span className="font-bold text-cyan-300">
                 AI地下埋設物・ガス管推論レポート（{previewSubsurface.landTitle}）
@@ -562,7 +562,7 @@ export default function Wizard({ onOpenStudio, onBackToWelcome, initialLand }: W
               </ChoiceButton>
             ))}
           </div>
-          <div className="grid md:grid-cols-2 gap-4 bg-[#0B1222] ring-1 ring-white/10 rounded-2xl p-4">
+          <div className="grid md:grid-cols-2 gap-4 bg-[#1C1C1C] ring-1 ring-white/10 rounded-2xl p-4">
             {[
               { label: '間口（東西）', value: width, set: setWidth },
               { label: '奥行（南北）', value: depth, set: setDepth }
@@ -633,10 +633,10 @@ export default function Wizard({ onOpenStudio, onBackToWelcome, initialLand }: W
                     }}
                     className={`py-3 rounded-2xl ring-1 text-sm font-semibold transition ${
                       disabled
-                        ? 'bg-[#0B1222]/40 ring-white/5 text-slate-600 cursor-not-allowed'
+                        ? 'bg-[#1C1C1C]/40 ring-white/5 text-slate-600 cursor-not-allowed'
                         : orientation === o.id
                         ? 'bg-cyan-400/15 ring-cyan-400 text-white cursor-pointer'
-                        : 'bg-[#0B1222] ring-white/10 text-slate-300 hover:bg-[#111C33] cursor-pointer'
+                        : 'bg-[#1C1C1C] ring-white/10 text-slate-300 hover:bg-[#262626] cursor-pointer'
                     }`}
                   >
                     {o.label}
@@ -648,7 +648,7 @@ export default function Wizard({ onOpenStudio, onBackToWelcome, initialLand }: W
         </section>
 
         {/* 生成ボタン */}
-        <section className="flex flex-wrap items-center justify-between gap-4 bg-[#0B1222] ring-1 ring-white/15 rounded-2xl px-5 py-4 animate-fade-up-delay-1">
+        <section className="flex flex-wrap items-center justify-between gap-4 bg-[#1C1C1C] ring-1 ring-white/15 rounded-2xl px-5 py-4 animate-fade-up-delay-1">
           <div>
             <div className="text-xs text-slate-400">選択中の設計条件</div>
             <div className="text-sm font-semibold text-white mt-0.5">{summaryText}</div>
@@ -656,7 +656,7 @@ export default function Wizard({ onOpenStudio, onBackToWelcome, initialLand }: W
           <button
             onClick={handleGenerate}
             disabled={isLoading}
-            className="h-12 flex items-center gap-2 px-6 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-[#070B14] text-sm font-bold transition disabled:opacity-50 shadow-lg shadow-cyan-500/20 cursor-pointer"
+            className="h-12 flex items-center gap-2 px-6 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-[#141414] text-sm font-bold transition disabled:opacity-50 shadow-lg cursor-pointer"
           >
             <Compass className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
             {isLoading ? '3つのプランを計算中...' : '埋設整合済みの3プランを作成する'}
@@ -686,7 +686,7 @@ export default function Wizard({ onOpenStudio, onBackToWelcome, initialLand }: W
               {variants.map((v) => (
                 <div
                   key={v.label}
-                  className="bg-[#0B1222] ring-1 ring-white/15 rounded-2xl overflow-hidden flex flex-col hover:ring-cyan-400/60 transition"
+                  className="bg-[#1C1C1C] ring-1 ring-white/15 rounded-2xl overflow-hidden flex flex-col hover:ring-cyan-400/60 transition"
                 >
                   <div className="px-4 py-3 border-b border-white/10 flex items-center justify-between">
                     <div>
@@ -736,7 +736,7 @@ export default function Wizard({ onOpenStudio, onBackToWelcome, initialLand }: W
                         context: initialLand?.context
                       })
                     }
-                    className="m-3 mt-auto h-11 flex items-center justify-center gap-2 px-4 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-[#070B14] text-xs font-bold transition cursor-pointer"
+                    className="m-3 mt-auto h-11 flex items-center justify-center gap-2 px-4 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-[#141414] text-xs font-bold transition cursor-pointer"
                   >
                     この案で3D・CADスタジオを開く
                     <ArrowRight className="w-4 h-4" />
