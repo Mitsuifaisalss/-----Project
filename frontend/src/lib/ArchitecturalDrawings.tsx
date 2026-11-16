@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { StratumArchBIMSchema } from './ai_bim_3d';
+import type { StratumArchBIMSchema } from '../pages/ai_bim_3d';
 
 export type CadTemplateMode = 'live_bim' | 'type_ab_hatch' | 'mansion_30tsubo' | 'angled_wing';
 export type CadThemeStyle = 'monochrome_hatch' | 'presentation_color';

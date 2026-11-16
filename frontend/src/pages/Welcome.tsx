@@ -1,7 +1,7 @@
 import { ArrowRight, ChevronRight, MapPin, Play } from 'lucide-react';
 import type { ScenarioKey } from './ai_bim_3d';
-import { SAMPLE_FIELD_SITES } from './realSiteData';
-import ThemeToggle from './ThemeToggle';
+import { SAMPLE_FIELD_SITES } from '../lib/realSiteData';
+import ThemeToggle from '../components/ThemeToggle';
 
 interface WelcomeProps {
   onStartWizard: (presetSiteId?: string) => void;

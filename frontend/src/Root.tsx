@@ -4,11 +4,11 @@ import Studio, {
   buildingScenarioToStratumSchema,
   type ScenarioKey,
   type StratumArchBIMSchema
-} from './ai_bim_3d';
-import Welcome from './Welcome';
-import Wizard from './Wizard';
-import LandMapExplorer, { blueprintForLand, type SelectedLand } from './LandMapExplorer';
-import type { PreviousBuildingType, FrontRoadDirection, SurroundingContextType, RealSiteContext } from './SubsurfaceInferenceEngine';
+} from './pages/ai_bim_3d';
+import Welcome from './pages/Welcome';
+import Wizard from './pages/Wizard';
+import LandMapExplorer, { blueprintForLand, type SelectedLand } from './pages/LandMapExplorer';
+import type { PreviousBuildingType, FrontRoadDirection, SurroundingContextType, RealSiteContext } from './lib/SubsurfaceInferenceEngine';
 
 interface StudioSession {
   id: number;

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { StratumArchBIMSchema } from './ai_bim_3d';
+import type { StratumArchBIMSchema } from '../pages/ai_bim_3d';
 
 // ==========================================
 // 土地・周辺環境・過去建物履歴からの地下埋設推論データ型

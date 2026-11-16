@@ -1,4 +1,4 @@
-import ThemeToggle from './ThemeToggle';
+import ThemeToggle from '../components/ThemeToggle';
 import {
   useEffect,
   useMemo,
@@ -35,9 +35,9 @@ import {
   type FrontRoadDirection,
   type SurroundingContextType,
   type RealSiteContext
-} from './SubsurfaceInferenceEngine';
-import { renderProArchitecturalCadSvg } from './ArchitecturalDrawings';
-import { analyzeRealSite, SAMPLE_FIELD_SITES, type SiteAnalysisResult, type Pt, type PresetFieldSite } from './realSiteData';
+} from '../lib/SubsurfaceInferenceEngine';
+import { renderProArchitecturalCadSvg } from '../lib/ArchitecturalDrawings';
+import { analyzeRealSite, SAMPLE_FIELD_SITES, type SiteAnalysisResult, type Pt, type PresetFieldSite } from '../lib/realSiteData';
 
 // ==========================================
 // 地図タイル（国土地理院タイル）

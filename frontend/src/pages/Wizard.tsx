@@ -1,4 +1,4 @@
-import ThemeToggle from './ThemeToggle';
+import ThemeToggle from '../components/ThemeToggle';
 import { useMemo, useState, type ReactNode } from 'react';
 import { ArrowRight, ArrowLeft, Check, AlertCircle, Home, Building2, Compass, MapPin, Radar } from 'lucide-react';
 import {
@@ -17,7 +17,7 @@ import {
   type FrontRoadDirection,
   type SurroundingContextType,
   type RealSiteContext
-} from './SubsurfaceInferenceEngine';
+} from '../lib/SubsurfaceInferenceEngine';
 import type { SelectedLand } from './LandMapExplorer';
 
 // ==========================================

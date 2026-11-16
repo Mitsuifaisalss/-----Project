@@ -233,14 +233,17 @@ APIドキュメント（Swagger UI）は `http://127.0.0.1:8000/docs` で確認�
         ├── main.tsx                   # エントリーポイント
         ├── index.css                  # Tailwind CSSテーマ定義
         ├── Root.tsx                   # 画面遷移ルーター (Welcome -> Map -> Wizard -> Studio)
-        ├── Welcome.tsx                # ランディング画面・4フェーズ解説＆デモツアー起動
-        ├── ThemeToggle.tsx            # ライト/ダークテーマ切替ボタン
-        ├── LandMapExplorer.tsx        # フィールドGISマップ探索・土地スキャン・即時CADドロワー
-        ├── realSiteData.ts            # OpenStreetMap / 国土地理院 リアルタイム空間データ解析＆ML連携
-        ├── SubsurfaceInferenceEngine.tsx  # 地下埋設推論ロジック＆多角形測量CAD（平面伏図＋GL断面図）描画
-        ├── ArchitecturalDrawings.tsx  # JIS建築CAD平面詳細図・建具シンボル・階層アクソメ図レンダラー
-        ├── Wizard.tsx                 # 地下埋設整合・新築プラン3案比較ウィザード
-        └── ai_bim_3d.tsx              # Three.js 3D地下X線透視＆3層BIMインタラクティブスタジオ
+        ├── components/                # 再利用UIコンポーネント
+        │   └── ThemeToggle.tsx        # ライト/ダークテーマ切替ボタン
+        ├── pages/                     # 画面単位のコンポーネント
+        │   ├── Welcome.tsx            # ランディング画面・4フェーズ解説＆デモツアー起動
+        │   ├── LandMapExplorer.tsx    # フィールドGISマップ探索・土地スキャン・即時CADドロワー
+        │   ├── Wizard.tsx             # 地下埋設整合・新築プラン3案比較ウィザード
+        │   └── ai_bim_3d.tsx          # Three.js 3D地下X線透視＆3層BIMインタラクティブスタジオ
+        └── lib/                       # ドメインロジック・データレイヤ
+            ├── realSiteData.ts        # OpenStreetMap / 国土地理院 リアルタイム空間データ解析＆ML連携
+            ├── SubsurfaceInferenceEngine.tsx  # 地下埋設推論ロジック＆多角形測量CAD（平面伏図＋GL断面図）描画
+            └── ArchitecturalDrawings.tsx  # JIS建築CAD平面詳細図・建具シンボル・階層アクソメ図レンダラー
 ```
 
 ---

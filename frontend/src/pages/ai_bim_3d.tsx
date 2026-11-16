@@ -1,4 +1,4 @@
-import ThemeToggle from './ThemeToggle';
+import ThemeToggle from '../components/ThemeToggle';
 import { useState, useEffect, useRef, useMemo } from 'react';
 import * as THREE from 'three';
 import {
@@ -21,7 +21,7 @@ import {
   ProCadFloorPlanView,
   VerticalZoningAxonometricView,
   renderProArchitecturalCadSvg
-} from './ArchitecturalDrawings';
+} from '../lib/ArchitecturalDrawings';
 import {
   SubsurfaceAnalyzerView,
   inferLandSubsurface,
@@ -32,7 +32,7 @@ import {
   type FrontRoadDirection,
   type SurroundingContextType,
   type RealSiteContext
-} from './SubsurfaceInferenceEngine';
+} from '../lib/SubsurfaceInferenceEngine';
 
 // ==========================================
 // 型定義
