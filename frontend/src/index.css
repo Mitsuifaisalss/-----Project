@@ -46,6 +46,29 @@
   --color-raised: #242424;
   --color-hover: #2b2b2b;
   --color-on-accent: #141414;
+
+  /* アニメーション: 旧手書き .animate-* クラスを @theme 由来のユーティリティに移行
+     （JSX側のクラス名は不変。未使用だった fade-up-delay-1/2/3 / float-slow / scan-line は削除） */
+  --animate-fade-up: fadeUp 0.2s ease-out both;
+  --animate-fade-in: fadeIn 0.4s ease-out both;
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 }
 
 html {
@@ -140,15 +163,14 @@ html {
   --color-sky-950: oklch(97.7% 0.013 236.62);
 }
 
-body {
-  background: var(--color-canvas);
-  color: var(--color-white);
-  transition: background-color 0.2s ease;
-}
+@layer base {
+  body {
+    @apply bg-canvas text-white transition-[background-color] duration-200;
+  }
 
-:focus-visible {
-  outline: 2px solid var(--color-cyan-400);
-  outline-offset: 2px;
+  :focus-visible {
+    @apply outline-2 outline-solid outline-offset-2 outline-cyan-400;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -157,79 +179,4 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-}
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes floatSlow {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-6px);
-  }
-}
-
-@keyframes dashDraw {
-  from {
-    stroke-dashoffset: 240;
-  }
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-.animate-fade-up {
-  animation: fadeUp 0.2s ease-out both;
-}
-
-.animate-fade-up-delay-1 {
-  animation: fadeUp 0.2s ease-out both;
-}
-
-.animate-fade-up-delay-2 {
-  animation: fadeUp 0.2s ease-out both;
-}
-
-.animate-fade-up-delay-3 {
-  animation: fadeUp 0.2s ease-out both;
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.4s ease-out both;
-}
-
-.animate-float-slow {
-  animation: floatSlow 6s ease-in-out infinite;
-}
-
-@keyframes scanLine {
-  0%, 100% {
-    transform: translateY(-40px);
-    opacity: 0.3;
-  }
-  50% {
-    transform: translateY(40px);
-    opacity: 1;
-  }
-}
-
-.animate-scan-line {
-  animation: scanLine 1.2s ease-in-out infinite;
 }
