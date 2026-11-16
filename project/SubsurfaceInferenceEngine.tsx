@@ -1182,19 +1182,19 @@ export function SubsurfaceAnalyzerView({
   const svgMarkup = renderSubsurfaceSurveyCadSvg(blueprint, analysis, showNewBuildingOverlay);
 
   return (
-    <div className="w-full h-full flex flex-col bg-[#141414] overflow-hidden">
+    <div className="w-full h-full flex flex-col bg-canvas overflow-hidden">
       {/* 上部コントロールバー：土地の過去履歴・前面道路・周辺環境の切り替え */}
-      <div className="px-4 py-2.5 bg-[#1C1C1C] border-b border-white/10 flex flex-wrap items-center justify-between gap-2 z-10">
+      <div className="px-4 py-2.5 bg-surface border-b border-white/10 flex flex-wrap items-center justify-between gap-2 z-10">
         <div className="flex flex-wrap items-center gap-2">
           <div className="flex items-center gap-1.5">
             <span className="text-[11px] font-semibold text-slate-300">① 前回建っていた建物:</span>
             <select
               value={prevType}
               onChange={(e) => onChangePrevType(e.target.value as PreviousBuildingType)}
-              className="bg-[#141414] ring-1 ring-cyan-400/50 rounded-lg px-2 py-1 text-xs font-medium text-white cursor-pointer"
+              className="bg-canvas ring-1 ring-cyan-400/50 rounded-lg px-2 py-1 text-xs font-medium text-white cursor-pointer"
             >
               {PREVIOUS_BUILDING_OPTIONS.map((opt) => (
-                <option key={opt.id} value={opt.id} className="bg-[#1C1C1C]">
+                <option key={opt.id} value={opt.id} className="bg-surface">
                   {opt.title} ({opt.era})
                 </option>
               ))}
@@ -1206,10 +1206,10 @@ export function SubsurfaceAnalyzerView({
             <select
               value={roadDir}
               onChange={(e) => onChangeRoadDir(e.target.value as FrontRoadDirection)}
-              className="bg-[#141414] ring-1 ring-white/15 rounded-lg px-2 py-1 text-xs text-white cursor-pointer"
+              className="bg-canvas ring-1 ring-white/15 rounded-lg px-2 py-1 text-xs text-white cursor-pointer"
             >
               {FRONT_ROAD_OPTIONS.map((opt) => (
-                <option key={opt.id} value={opt.id} className="bg-[#1C1C1C]">
+                <option key={opt.id} value={opt.id} className="bg-surface">
                   {opt.label}
                 </option>
               ))}
@@ -1221,10 +1221,10 @@ export function SubsurfaceAnalyzerView({
             <select
               value={surroundingType}
               onChange={(e) => onChangeSurrounding(e.target.value as SurroundingContextType)}
-              className="bg-[#141414] ring-1 ring-white/15 rounded-lg px-2 py-1 text-xs text-white cursor-pointer"
+              className="bg-canvas ring-1 ring-white/15 rounded-lg px-2 py-1 text-xs text-white cursor-pointer"
             >
               {SURROUNDING_OPTIONS.map((opt) => (
-                <option key={opt.id} value={opt.id} className="bg-[#1C1C1C]">
+                <option key={opt.id} value={opt.id} className="bg-surface">
                   {opt.label}
                 </option>
               ))}
@@ -1244,7 +1244,7 @@ export function SubsurfaceAnalyzerView({
       </div>
 
       {/* AI推論サマリーバナー */}
-      <div className="px-4 py-2 bg-[#212121] border-b border-white/10 flex flex-wrap items-center justify-between gap-2 text-xs">
+      <div className="px-4 py-2 bg-raised border-b border-white/10 flex flex-wrap items-center justify-between gap-2 text-xs">
         <div className="flex items-center gap-2">
           <span
             className={`px-2 py-0.5 rounded-md font-mono text-[10px] font-bold ${
@@ -1267,7 +1267,7 @@ export function SubsurfaceAnalyzerView({
 
       {/* メイン2D 埋設インフラ・地下断面CAD図面 */}
       <div
-        className="flex-1 overflow-auto p-4 flex items-center justify-center bg-[#141414] [&>svg]:max-h-full [&>svg]:w-auto [&>svg]:rounded-xl [&>svg]:shadow-2xl"
+        className="flex-1 overflow-auto p-4 flex items-center justify-center bg-canvas [&>svg]:max-h-full [&>svg]:w-auto [&>svg]:rounded-xl [&>svg]:shadow-2xl"
         dangerouslySetInnerHTML={{ __html: svgMarkup }}
       />
     </div>

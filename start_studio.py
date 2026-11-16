@@ -73,6 +73,19 @@ def kill_port_on_windows(port: int) -> None:
         pass
 
 
+def stop_posix(pid_file: Path) -> None:
+    """Linux/macOS: 前回起動時に記録したプロセスグループを停止する"""
+    if sys.platform == "win32" or not pid_file.exists():
+        return
+    import signal
+    for line in pid_file.read_text().split():
+        try:
+            os.killpg(int(line), signal.SIGTERM)
+        except (ValueError, ProcessLookupError, PermissionError):
+            pass
+    pid_file.unlink(missing_ok=True)
+
+
 def wait_for_http(url: str, timeout_sec: float = 20.0) -> bool:
     """指定URLがHTTP 200を返すまでポーリング待機する"""
     deadline = time.time() + timeout_sec
@@ -121,6 +134,8 @@ def main() -> None:
     print("=== Stopping any existing processes on ports 8000 & 5173 ===")
     kill_port_on_windows(8000)
     kill_port_on_windows(5173)
+    pid_file = log_dir / "studio.pids"
+    stop_posix(pid_file)
 
     if args.stop:
         print("[OK] Stopped backend (8000) and frontend (5173) servers.")
@@ -131,12 +146,16 @@ def main() -> None:
     creationflags = 0
     if sys.platform == "win32":
         creationflags = subprocess.CREATE_NEW_PROCESS_GROUP | subprocess.DETACHED_PROCESS
+    # POSIX: 新しいセッションで起動し、--stop でグループごと停止できるようにする
+    posix_kw = {} if sys.platform == "win32" else {"start_new_session": True}
+    venv_python = root_dir / ".venv" / "bin" / "python"
+    python_exe = str(venv_python) if sys.platform != "win32" and venv_python.exists() else sys.executable
 
     # 1. バックエンド (FastAPI) のバックグラウンド起動
     backend_log_path = log_dir / "backend.log"
     backend_log = backend_log_path.open("w", encoding="utf-8")
     backend_cmd = [
-        sys.executable,
+        python_exe,
         "-m",
         "uvicorn",
         "backend.server:app",
@@ -153,6 +172,7 @@ def main() -> None:
         stderr=subprocess.STDOUT,
         stdin=subprocess.DEVNULL,
         creationflags=creationflags,
+        **posix_kw,
     )
 
     # 2. フロントエンド (Vite) のバックグラウンド起動
@@ -168,7 +188,11 @@ def main() -> None:
         stderr=subprocess.STDOUT,
         stdin=subprocess.DEVNULL,
         creationflags=creationflags,
+        **posix_kw,
     )
+
+    if sys.platform != "win32":
+        pid_file.write_text(f"{backend_proc.pid}\n{frontend_proc.pid}\n")
 
     # 3. 稼働確認 (Health Check)
     print("=== [3/3] Verifying Backend & Frontend Health ===")

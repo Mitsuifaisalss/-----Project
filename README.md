@@ -170,6 +170,13 @@ npm install
 cd ..
 ```
 
+Linux（Chimera Linux などmusl環境を含む）の場合は venv を使います。`start_studio.py` は `.venv` があれば自動でそれを使います。
+```sh
+python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
+cd project && npm ci && cd ..
+python3 start_studio.py          # 停止: python3 start_studio.py --stop
+```
+
 ### 方法A：ワンコマンド自動起動（推奨）
 バックエンド（FastAPI: Port `8000`）とフロントエンド（Vite: Port `5173`）をバックグラウンドで同時起動し、ヘルスチェック完了後に自動でブラウザを開きます。
 

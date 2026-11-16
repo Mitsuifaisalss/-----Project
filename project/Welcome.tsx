@@ -1,3 +1,4 @@
+import ThemeToggle from './ThemeToggle';
 import { useEffect, useState } from 'react';
 import {
   ArrowRight,
@@ -18,25 +19,25 @@ interface WelcomeProps {
 
 const SCAN_STEPS = [
   {
-    code: 'PHASE 01',
+    code: '手順 1',
     title: 'マップ上で調査したい土地をタップ選択',
     sub: 'GIS Parcel & Surrounding Building Scan',
     desc: '現場のタブレットやPCから地図上の土地をタップ。OpenStreetMapの周囲の建物形状・階数・前面道路幅員・水路距離と、国土地理院の1970年代航空写真を即時照合します。'
   },
   {
-    code: 'PHASE 02',
+    code: '手順 2',
     title: '周囲の建物・旧建物履歴から「地下ガス管・上下水管」をAI推論',
     sub: 'Subsurface Gas & Water Utility Inference',
     desc: '前面道路の本管(GL-1.2m)と、前回その土地に建っていた建物（旧木造住宅の台所/風呂釜・旧RCクリニックの機械室等）から、地中に残る白ガス管・鉛給水管・隣地越境管のルートを推論します。'
   },
   {
-    code: 'PHASE 03',
+    code: '手順 3',
     title: '地中残置杭・旧浄化槽・地下タンクの深さと撤去費を算出',
     sub: 'Buried Obstacles & Excavation Cost Estimation',
     desc: 'GL-1.8m〜-8.5mに残置された旧RCビルのPHC杭や旧浄化槽・地下重油タンクを特定。重機掘削前の試掘ポイントと撤去概算費用（万円）を即座に算出します。'
   },
   {
-    code: 'PHASE 04',
+    code: '手順 4',
     title: '埋設管と干渉しない「埋設伏図・断面図・新築間取り図」を自動作図',
     sub: 'Automated Subsurface CAD & Architectural Floor Plan',
     desc: '推論された地下埋設インフラを避けて新築の柱・基礎・給排水縦シャフト(PS)を自動配置し、プロ実務仕様の2D CAD図面と3D地下X線透視モデルを同時生成します。'
@@ -56,9 +57,9 @@ export default function Welcome({ onStartWizard, onLaunchDemoTour }: WelcomeProp
   const activeStep = SCAN_STEPS[stepIdx];
 
   return (
-    <div className="min-h-screen w-full bg-[#141414] text-slate-100 selection:bg-cyan-400/20 antialiased">
+    <div className="min-h-screen w-full bg-canvas text-slate-100 selection:bg-cyan-400/20 antialiased">
       {/* ==================== トップナビゲーション ==================== */}
-      <header className="sticky top-0 z-30 bg-[#141414]/85 backdrop-blur-xl border-b border-white/10">
+      <header className="sticky top-0 z-30 bg-canvas/85 backdrop-blur-xl border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-xl bg-cyan-400/15 ring-1 ring-cyan-400/40 text-cyan-300 flex items-center justify-center shadow-lg">
@@ -69,7 +70,7 @@ export default function Welcome({ onStartWizard, onLaunchDemoTour }: WelcomeProp
                 <span className="font-bold text-base tracking-tight text-white">STRATUM GEO-BIM</span>
               </div>
               <div className="text-[11px] text-slate-400 hidden sm:block">
-                土地マップ選択 × 地下埋設ガス管・障害物AI推論 × 自動CAD設計システム
+                地下埋設物の推定と設計図づくり
               </div>
             </div>
           </div>
@@ -80,16 +81,16 @@ export default function Welcome({ onStartWizard, onLaunchDemoTour }: WelcomeProp
               className="h-11 px-4 rounded-xl text-xs sm:text-sm font-medium text-slate-200 bg-white/[0.05] hover:bg-white/[0.1] ring-1 ring-white/10 flex items-center gap-2 transition active:scale-95 cursor-pointer"
             >
               <Play className="w-3.5 h-3.5 text-cyan-400 fill-cyan-400" />
-              <span>3D地下X線デモ</span>
+              <span className="hidden sm:inline">デモを見る</span>
             </button>
             <button
               onClick={() => onStartWizard()}
-              className="h-11 px-4 sm:px-5 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-[#141414] text-xs sm:text-sm font-bold flex items-center gap-2 transition shadow-lg active:scale-95 cursor-pointer"
+              className="h-11 px-4 sm:px-5 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-on-accent text-xs sm:text-sm font-bold flex items-center gap-2 transition shadow-lg active:scale-95 cursor-pointer"
             >
               <MapPin className="w-4 h-4" />
-              <span>マップで土地を選ぶ</span>
-              <ArrowRight className="w-4 h-4" />
+              <span>土地を選ぶ</span>
             </button>
+            <ThemeToggle />
           </div>
         </div>
       </header>
@@ -100,31 +101,24 @@ export default function Welcome({ onStartWizard, onLaunchDemoTour }: WelcomeProp
           {/* 左カラム：メインコピー＆大型タブレットCTA */}
           <div className="lg:col-span-6 space-y-6 animate-fade-up">
 
-            <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-bold tracking-tight leading-[1.22] text-white">
-              マップで知りたい土地をタップ。
+            <h1 className="text-3xl sm:text-4xl lg:text-[38px] font-bold tracking-tight leading-[1.22] text-white">
+              地図で土地を選ぶと、
               <br />
-              <span className="text-cyan-300">
-                地下のガス管・埋設物と設計図
-              </span>
-              をAIが即座に描く。
+              <span className="text-cyan-300">地下の埋設物</span>と設計図がそろう。
             </h1>
 
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-              現場のタブレットから地図上の土地を選ぶだけ。
-              <strong className="text-white font-semibold">
-                「周囲の建物データ」「前面道路の本管」「前回その土地に建っていた建物履歴」
-              </strong>
-              から、地中に眠る都市ガス管・上下水管・隣地越境管・旧残置杭をAIが推論し、平面伏図・地下断面図・新築間取り図をワンタップで自動生成します。
+              周囲の建物、前面道路の本管、以前その土地に建っていた建物の記録をもとに、地中のガス管・上下水管・越境管・残置杭の位置を推定。平面伏図・地下断面図・新築の間取り図までまとめて作成します。
             </p>
 
             {/* メインアクションボタン（タブレット指操作対応 52px高） */}
             <div className="flex flex-wrap items-center gap-3 pt-1">
               <button
                 onClick={() => onStartWizard()}
-                className="group h-14 px-7 rounded-2xl bg-cyan-400 hover:bg-cyan-300 text-[#141414] text-base font-bold flex items-center gap-3 transition shadow-xl active:scale-[0.98] cursor-pointer"
+                className="group h-14 px-7 rounded-2xl bg-cyan-400 hover:bg-cyan-300 text-on-accent text-base font-bold flex items-center gap-3 transition shadow-xl active:scale-[0.98] cursor-pointer"
               >
                 <MapPin className="w-5 h-5" />
-                <span>土地マップを開いてAI調査を開始</span>
+                <span>土地を選んで調査する</span>
                 <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
               </button>
 
@@ -133,23 +127,23 @@ export default function Welcome({ onStartWizard, onLaunchDemoTour }: WelcomeProp
                 className="h-14 px-6 rounded-2xl bg-white/[0.06] hover:bg-white/[0.12] ring-1 ring-white/15 text-white text-sm sm:text-base font-semibold flex items-center gap-2.5 transition active:scale-[0.98] cursor-pointer"
               >
                 <Play className="w-4 h-4 text-cyan-400 fill-cyan-400" />
-                <span>3D地下X線スタジオを見る</span>
+                <span>3Dのデモを見る</span>
               </button>
             </div>
 
             {/* 3つの主要スペック指標 */}
             <div className="grid grid-cols-3 gap-3 pt-4">
-              <div className="rounded-2xl bg-[#212121] ring-1 ring-white/10 p-3.5">
+              <div className="rounded-2xl bg-raised ring-1 ring-white/10 p-3.5">
                 <div className="font-mono text-xs text-amber-400 font-semibold">GL -0.4m〜-1.5m</div>
                 <div className="text-sm font-bold text-white mt-0.5">埋設ガス管・給排水</div>
                 <div className="text-[11px] text-slate-400 mt-1">道路本管と旧台所・風呂跡から引込ルートを推論</div>
               </div>
-              <div className="rounded-2xl bg-[#212121] ring-1 ring-white/10 p-3.5">
+              <div className="rounded-2xl bg-raised ring-1 ring-white/10 p-3.5">
                 <div className="font-mono text-xs text-red-400 font-semibold">GL -0.5m〜-3.5m</div>
                 <div className="text-sm font-bold text-white mt-0.5">隣地越境管・旧浄化槽</div>
                 <div className="text-[11px] text-slate-400 mt-1">周囲の建物関係から越境枝管・地下タンクを検出</div>
               </div>
-              <div className="rounded-2xl bg-[#212121] ring-1 ring-white/10 p-3.5">
+              <div className="rounded-2xl bg-raised ring-1 ring-white/10 p-3.5">
                 <div className="font-mono text-xs text-cyan-400 font-semibold">GL -1.8m〜-8.5m</div>
                 <div className="text-sm font-bold text-white mt-0.5">残置PHC杭・支持層</div>
                 <div className="text-[11px] text-slate-400 mt-1">旧RCビルの残置杭と新築基礎の干渉を自動回避</div>
@@ -159,10 +153,10 @@ export default function Welcome({ onStartWizard, onLaunchDemoTour }: WelcomeProp
 
           {/* 右カラム：ライブGISレーダー＆地下埋設X線ダイアグラム */}
           <div className="lg:col-span-6 animate-fade-up-delay-1">
-            <div className="rounded-3xl bg-[#1C1C1C] ring-1 ring-white/15 p-4 sm:p-5 shadow-2xl">
+            <div className="rounded-3xl bg-surface ring-1 ring-white/15 p-4 sm:p-5 shadow-2xl">
               <div className="flex items-center justify-between pb-3 border-b border-white/10">
                 <div className="flex items-center gap-2.5">
-                  <span className="font-mono text-xs px-2.5 py-1 rounded-lg bg-cyan-400/15 text-cyan-300 ring-1 ring-cyan-400/30 font-bold">
+                  <span className="shrink-0 text-xs px-2.5 py-1 rounded-lg bg-cyan-400/15 text-cyan-300 ring-1 ring-cyan-400/30 font-bold">
                     {activeStep.code}
                   </span>
                   <span className="text-xs sm:text-sm font-bold text-white">{activeStep.title}</span>
@@ -174,30 +168,30 @@ export default function Welcome({ onStartWizard, onLaunchDemoTour }: WelcomeProp
                 <svg viewBox="0 0 560 360" className="w-full h-full">
                   <defs>
                     <pattern id="gis-grid" width="28" height="28" patternUnits="userSpaceOnUse">
-                      <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#1E293B" strokeWidth="0.8" />
+                      <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#262626" strokeWidth="0.8" />
                     </pattern>
                   </defs>
                   <rect width="560" height="360" fill="url(#gis-grid)" />
 
                   {/* 周囲の建物ポリゴン (西隣・東隣・北隣) */}
-                  <g fill="#1E293B" stroke="#475569" strokeWidth="1.2">
+                  <g fill="#262626" stroke="#525252" strokeWidth="1.2">
                     <rect x="36" y="64" width="96" height="145" rx="4" />
                     <rect x="428" y="64" width="96" height="145" rx="4" />
                     <rect x="155" y="14" width="250" height="36" rx="4" />
                   </g>
-                  <text x="84" y="135" textAnchor="middle" fontSize="10" fill="#94A3B8">
+                  <text x="84" y="135" textAnchor="middle" fontSize="10" fill="#A3A3A3">
                     西隣：既存木造2F
                   </text>
-                  <text x="476" y="135" textAnchor="middle" fontSize="10" fill="#94A3B8">
+                  <text x="476" y="135" textAnchor="middle" fontSize="10" fill="#A3A3A3">
                     東隣：RCマンション3F
                   </text>
-                  <text x="280" y="36" textAnchor="middle" fontSize="10" fill="#94A3B8">
+                  <text x="280" y="36" textAnchor="middle" fontSize="10" fill="#A3A3A3">
                     北隣：既存住宅（旧水路暗渠境界）
                   </text>
 
                   {/* 南側前面道路＆地下本管 */}
-                  <rect x="20" y="232" width="520" height="54" fill="#0F172A" stroke="#334155" strokeWidth="1" />
-                  <text x="40" y="248" fontSize="10" fontWeight="bold" fill="#94A3B8">
+                  <rect x="20" y="232" width="520" height="54" fill="#1C1C1C" stroke="#3A3A3A" strokeWidth="1" />
+                  <text x="40" y="248" fontSize="10" fontWeight="bold" fill="#A3A3A3">
                     前面公道（幅員6.0m）— 地下インフラ本管ゾーン
                   </text>
                   {/* 都市ガス本管 (アンバー) */}
@@ -298,7 +292,7 @@ export default function Welcome({ onStartWizard, onLaunchDemoTour }: WelcomeProp
                   </text>
 
                   {/* 下段ミニ断面ゲージ (GL 0m 〜 -8.5m) */}
-                  <rect x="20" y="296" width="520" height="52" rx="6" fill="#1C1C1C" stroke="#1E293B" strokeWidth="1" />
+                  <rect x="20" y="296" width="520" height="52" rx="6" fill="#1C1C1C" stroke="#262626" strokeWidth="1" />
                   <text x="32" y="313" fontSize="9.5" fontFamily="monospace" fontWeight="bold" fill="#38BDF8">
                     STRATUM DEPTH PROFILE (GL±0.0m 〜 -8.5m)
                   </text>
@@ -327,7 +321,7 @@ export default function Welcome({ onStartWizard, onLaunchDemoTour }: WelcomeProp
                         : 'bg-white/[0.03] hover:bg-white/[0.07] text-slate-400'
                     }`}
                   >
-                    <div className="font-mono text-[10px] text-cyan-400 font-bold">{st.code}</div>
+                    <div className="text-[11px] text-cyan-400 font-bold">{st.code}</div>
                     <div className="text-[11px] font-semibold mt-0.5 line-clamp-1">{st.title}</div>
                   </button>
                 ))}
@@ -338,7 +332,7 @@ export default function Welcome({ onStartWizard, onLaunchDemoTour }: WelcomeProp
       </section>
 
       {/* ==================== ワンタップ現地調査プリセット（マップ直行カード） ==================== */}
-      <section className="border-t border-white/10 bg-[#181818] py-14">
+      <section className="border-t border-white/10 bg-surface py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-6">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
@@ -346,14 +340,14 @@ export default function Welcome({ onStartWizard, onLaunchDemoTour }: WelcomeProp
                 現地ケース別プリセット
               </div>
               <h2 className="text-xl sm:text-2xl font-bold text-white mt-1">
-                知りたい土地ケースをタップして、マップ＆AI埋設図を即座に開く
+                事例の土地から始める
               </h2>
             </div>
             <button
               onClick={() => onStartWizard()}
               className="text-xs sm:text-sm font-semibold text-cyan-300 hover:text-cyan-200 flex items-center gap-1.5 cursor-pointer"
             >
-              自由な住所・現在地をマップで探す
+              住所や現在地から探す
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
@@ -363,11 +357,11 @@ export default function Welcome({ onStartWizard, onLaunchDemoTour }: WelcomeProp
               <button
                 key={s.id}
                 onClick={() => onStartWizard(s.id)}
-                className="group text-left rounded-2xl bg-[#212121] hover:bg-[#2B2B2B] ring-1 ring-white/10 hover:ring-cyan-400/60 p-5 flex flex-col justify-between transition shadow-lg cursor-pointer"
+                className="group text-left rounded-2xl bg-raised hover:bg-hover ring-1 ring-white/10 hover:ring-cyan-400/60 p-5 flex flex-col justify-between transition shadow-lg cursor-pointer"
               >
                 <div className="space-y-3">
                   <div className="flex items-center justify-between gap-2">
-                    <span className="px-2.5 py-1 rounded-lg text-[11px] font-mono font-semibold bg-cyan-400/15 text-cyan-300 ring-1 ring-cyan-400/30">
+                    <span className="px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-cyan-400/15 text-cyan-300 ring-1 ring-cyan-400/30">
                       {s.badge}
                     </span>
                     <MapPin className="w-4 h-4 text-slate-400 group-hover:text-cyan-400 transition" />
@@ -381,7 +375,7 @@ export default function Welcome({ onStartWizard, onLaunchDemoTour }: WelcomeProp
                 </div>
 
                 <div className="mt-5 pt-3 border-t border-white/10 flex items-center justify-between text-xs font-semibold text-cyan-300">
-                  <span>この土地をマップでAI解析</span>
+                  <span>この土地を開く</span>
                   <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </div>
               </button>
@@ -393,7 +387,7 @@ export default function Welcome({ onStartWizard, onLaunchDemoTour }: WelcomeProp
       {/* ==================== 現場タブレット向け3つの特徴 ==================== */}
       <section className="border-t border-white/10 py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 grid md:grid-cols-3 gap-6">
-          <div className="rounded-2xl bg-[#1C1C1C] ring-1 ring-white/10 p-6 space-y-2.5">
+          <div className="rounded-2xl bg-surface ring-1 ring-white/10 p-6 space-y-2.5">
             <div className="w-10 h-10 rounded-xl bg-cyan-400/15 text-cyan-300 flex items-center justify-center">
               <ScanLine className="w-5 h-5" />
             </div>
@@ -403,7 +397,7 @@ export default function Welcome({ onStartWizard, onLaunchDemoTour }: WelcomeProp
             </p>
           </div>
 
-          <div className="rounded-2xl bg-[#1C1C1C] ring-1 ring-white/10 p-6 space-y-2.5">
+          <div className="rounded-2xl bg-surface ring-1 ring-white/10 p-6 space-y-2.5">
             <div className="w-10 h-10 rounded-xl bg-amber-400/15 text-amber-300 flex items-center justify-center">
               <ShieldAlert className="w-5 h-5" />
             </div>
@@ -413,7 +407,7 @@ export default function Welcome({ onStartWizard, onLaunchDemoTour }: WelcomeProp
             </p>
           </div>
 
-          <div className="rounded-2xl bg-[#1C1C1C] ring-1 ring-white/10 p-6 space-y-2.5">
+          <div className="rounded-2xl bg-surface ring-1 ring-white/10 p-6 space-y-2.5">
             <div className="w-10 h-10 rounded-xl bg-emerald-400/15 text-emerald-300 flex items-center justify-center">
               <FileCode2 className="w-5 h-5" />
             </div>

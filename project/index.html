@@ -3,7 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stratum Studio - 建築3層BIM推論プロトタイプ</title>
+    <script>
+      // 描画前にテーマを決めてちらつきを防ぐ（保存値 → OS設定の順）
+      (function () {
+        var t = null;
+        try { t = localStorage.getItem('theme'); } catch (e) {}
+        if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        document.documentElement.dataset.theme = t;
+      })();
+    </script>
+    <title>Stratum Geo-BIM</title>
   </head>
   <body>
     <div id="root"></div>
