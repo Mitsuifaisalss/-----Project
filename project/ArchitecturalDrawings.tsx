@@ -978,7 +978,7 @@ export function ProCadFloorPlanView({
 
         {templateMode === 'live_bim' && (
           <div className="flex items-center gap-2">
-            <div className="bg-[#FFFFFF] border border-[#D5D1C8] rounded-[4px] p-0.5 flex items-center text-[11px]">
+            <div className="bg-[#FFFFFF] border border-[#D5D1C8] rounded-[4px] p-0.5 flex items-center text-xs">
               <button
                 onClick={() => setCadTheme('monochrome_hatch')}
                 className={`px-2 py-0.5 rounded-[3px] cursor-pointer ${
@@ -997,7 +997,7 @@ export function ProCadFloorPlanView({
               </button>
             </div>
 
-            <div className="bg-[#FFFFFF] border border-[#D5D1C8] rounded-[4px] p-0.5 flex items-center text-[11px]">
+            <div className="bg-[#FFFFFF] border border-[#D5D1C8] rounded-[4px] p-0.5 flex items-center text-xs">
               <button
                 onClick={() => setLabelStyle('english_serif')}
                 className={`px-2 py-0.5 rounded-[3px] cursor-pointer ${
@@ -1150,7 +1150,7 @@ export function VerticalZoningAxonometricView({
           <span className="text-xs font-serif font-semibold text-[#1C1B18]">
             複合都市建築・階層ゾーニング分解アクソメ図 (B2F〜29F Vertical Stacking Axonometric — 図5モード)
           </span>
-          <span className="ml-3 text-[11px] font-mono text-[#6E6B64]">
+          <span className="ml-3 text-xs font-mono text-[#6E6B64]">
             現在敷地連動: {blueprint.site.width}m × {blueprint.site.depth}m / 中央EV・PSコア貫通構造
           </span>
         </div>

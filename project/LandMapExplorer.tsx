@@ -538,7 +538,7 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
                   <MapPin className={`w-3.5 h-3.5 ${isSelected ? 'text-on-accent' : 'text-cyan-400'}`} />
                   <span>{s.label}</span>
                   <span
-                    className={`px-1.5 py-0.5 rounded text-[10px] font-mono ${
+                    className={`px-1.5 py-0.5 rounded text-xs font-mono ${
                       isSelected ? 'bg-canvas/20 text-on-accent' : 'bg-white/10 text-cyan-300'
                     }`}
                   >
@@ -595,7 +595,7 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
             <span>調べたい土地をタップすると、地下埋設図と設計図を作成します</span>
           </div>
         )}
-        <div className="absolute bottom-1.5 left-3 text-[10px] text-white/75 pointer-events-none drop-shadow">
+        <div className="absolute bottom-1.5 left-3 text-xs text-white/75 pointer-events-none drop-shadow">
           地図タイル：国土地理院 ／ 建物・道路ベクトル：© OpenStreetMap contributors
         </div>
       </div>
@@ -607,12 +607,9 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
           <div className="px-5 pt-3.5 pb-3 flex items-start justify-between gap-3 border-b border-white/10">
             <div className="min-w-0">
               <div className="flex items-center gap-2">
-                <span className="text-[11px] text-cyan-400 font-mono tracking-[0.16em] font-semibold">
-                  AI LAND &amp; SUBSURFACE CAD
-                </span>
                 {analysis && (
                   <span
-                    className={`px-2 py-0.5 rounded-md text-[10px] font-mono font-bold ring-1 ${
+                    className={`px-2 py-0.5 rounded-md text-xs font-mono font-bold ring-1 ${
                       RISK_STYLE[analysis.aiSummary.overallRiskLevel]
                     }`}
                   >
@@ -626,7 +623,7 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
                 </div>
                 {site && (
                   <span
-                    className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold shrink-0 ${
+                    className={`px-2 py-0.5 rounded text-xs font-mono font-bold shrink-0 ${
                       site.siteStatus === 'existing_building'
                         ? 'bg-emerald-500/20 text-emerald-300 ring-1 ring-emerald-400/40'
                         : site.siteStatus === 'parking_lot'
@@ -670,7 +667,7 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
             <div className="flex-1 grid place-items-center py-14">
               <div className="flex flex-col items-center gap-3 text-slate-200 text-sm text-center px-6">
                 <ScanLine className="w-11 h-11 text-cyan-400 animate-pulse" />
-                <div className="font-semibold text-base">AIが選択された土地と周辺環境を解析中…</div>
+                <div className="font-semibold text-base">土地と周辺環境を解析しています…</div>
                 <div className="text-xs text-slate-400">
                   周囲の建物・前面道路本管・旧建物履歴から地下ガス管と設計図を作成しています
                 </div>
@@ -699,9 +696,9 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
               <div className="px-4 flex gap-1 border-b border-white/10 bg-canvas">
                 {(
                   [
-                    ['drawing', '① AI自動作図 (CAD)'],
-                    ['result', '② 埋設リスク・一覧'],
-                    ['evidence', '③ 根拠・現地補正']
+                    ['drawing', '図面'],
+                    ['result', '埋設物の一覧'],
+                    ['evidence', '根拠と現地補正']
                   ] as const
                 ).map(([k, label]) => (
                   <button
@@ -744,12 +741,12 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
                           }`}
                         >
                           <ClipboardList className="w-3.5 h-3.5" />
-                          AI新築1F間取り図 (埋設整合済)
+                          新築1F間取り図（埋設物と整合済み）
                         </button>
                       </div>
 
                       {drawingMode === 'subsurface' && (
-                        <label className="flex items-center gap-1.5 px-2 text-[11px] text-slate-300 cursor-pointer select-none">
+                        <label className="flex items-center gap-1.5 px-2 text-xs text-slate-300 cursor-pointer select-none">
                           <input
                             type="checkbox"
                             checked={showFoundationOverlay}
@@ -763,7 +760,7 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
 
                     {/* 要点サマリーバー */}
                     <div className="rounded-xl bg-cyan-500/10 ring-1 ring-cyan-400/30 px-3.5 py-2.5 text-xs text-cyan-100 leading-relaxed">
-                      <strong className="text-cyan-300 font-semibold">AI解析サマリー：</strong>
+                      <strong className="text-cyan-300 font-semibold">解析結果：</strong>
                       {analysis.aiSummary.keyFindings[0]}
                     </div>
 
@@ -800,8 +797,8 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
 
                     {/* 簡易変更セレクト（タブレットで図面を見ながら旧建物履歴を即座に切り替え可能） */}
                     <div className="rounded-xl bg-white/[0.03] ring-1 ring-white/10 p-3 space-y-2">
-                      <div className="text-[11px] text-slate-400 font-medium">
-                        前回この土地に建っていた建物履歴（切り替えると上のAI埋設図が即時再計算されます）
+                      <div className="text-xs text-slate-400 font-medium">
+                        前回この土地に建っていた建物履歴（切り替えると上の埋設図を再計算します）
                       </div>
                       <select
                         value={land.prevType}
@@ -824,18 +821,18 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
                   <>
                     <div className="grid grid-cols-3 gap-2">
                       <div className={`rounded-2xl ring-1 p-3 ${RISK_STYLE[analysis.aiSummary.overallRiskLevel]}`}>
-                        <div className="text-[11px] opacity-80">埋設リスク</div>
+                        <div className="text-xs opacity-80">埋設リスク</div>
                         <div className="text-xl font-bold">{analysis.aiSummary.overallRiskLevel}</div>
                       </div>
                       <div className="rounded-2xl ring-1 ring-white/10 bg-white/[0.03] p-3">
-                        <div className="text-[11px] text-slate-400">埋設管</div>
+                        <div className="text-xs text-slate-400">埋設管</div>
                         <div className="text-xl font-bold">
                           {analysis.pipes.length}
                           <span className="text-xs font-normal ml-0.5">系統</span>
                         </div>
                       </div>
                       <div className="rounded-2xl ring-1 ring-white/10 bg-white/[0.03] p-3">
-                        <div className="text-[11px] text-slate-400">撤去・試掘概算</div>
+                        <div className="text-xs text-slate-400">撤去・試掘概算</div>
                         <div className="text-xl font-bold">
                           {analysis.aiSummary.estimatedSubsurfaceCostManYen}
                           <span className="text-xs font-normal ml-0.5">万円</span>
@@ -868,7 +865,7 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
                             />
                             <div className="min-w-0 flex-1">
                               <div className="text-sm truncate">{p.label.replace('推論：', '')}</div>
-                              <div className="text-[11px] text-slate-400 font-mono">
+                              <div className="text-xs text-slate-400 font-mono">
                                 GL-{p.depth2.toFixed(2)}m ・ 確度 {conf(p.confidence)} ・ {p.reason}
                               </div>
                             </div>
@@ -879,7 +876,7 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
                           <span className="w-3 h-3 rounded-sm shrink-0 bg-red-400" />
                           <div className="min-w-0 flex-1">
                             <div className="text-sm truncate">{o.label.replace('推論：', '')}</div>
-                            <div className="text-[11px] text-slate-400 font-mono">
+                            <div className="text-xs text-slate-400 font-mono">
                               GL-{o.depthTop}〜-{o.depthBottom}m ・ 撤去 約{o.removalCostManYen}万円
                             </div>
                           </div>
@@ -898,7 +895,7 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
                       {site.evidence.map((ev, i) => (
                         <div key={i} className="flex items-start gap-3 rounded-xl bg-white/[0.03] px-3 py-2.5">
                           <span
-                            className={`mt-0.5 text-[10px] font-mono px-1.5 py-0.5 rounded shrink-0 ${
+                            className={`mt-0.5 text-xs font-mono px-1.5 py-0.5 rounded shrink-0 ${
                               ev.source === '推定'
                                 ? 'bg-amber-400/15 text-amber-300'
                                 : 'bg-cyan-400/15 text-cyan-300'
@@ -907,7 +904,7 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
                             {ev.source}
                           </span>
                           <div className="min-w-0">
-                            <div className="text-[11px] text-slate-400">{ev.label}</div>
+                            <div className="text-xs text-slate-400">{ev.label}</div>
                             <div className="text-sm">{ev.value}</div>
                           </div>
                         </div>
@@ -915,7 +912,7 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
                     </div>
 
                     <div className="space-y-3">
-                      <div className="text-xs text-slate-400">AI判定（現地確認と異なる場合はタップして補正）</div>
+                      <div className="text-xs text-slate-400">自動判定（現地と異なる場合はタップして修正）</div>
                       {[
                         {
                           label: '解体・既存建物の種別',
@@ -940,7 +937,7 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
                         }
                       ].map((f) => (
                         <div key={f.label}>
-                          <div className="flex justify-between text-[11px] mb-1">
+                          <div className="flex justify-between text-xs mb-1">
                             <span className="text-slate-300">{f.label}</span>
                             <span className={f.conf >= 0.7 ? 'text-emerald-300' : 'text-amber-300'}>
                               確度 {conf(f.conf)}
@@ -960,7 +957,7 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
                         </div>
                       ))}
                     </div>
-                    <p className="text-[11px] text-slate-400">
+                    <p className="text-xs text-slate-400">
                       ヒント：右上の地図切替ボタンから「1974-78年 航空写真」を表示すると、昭和期に建っていた旧建物の配置を視覚的に照合できます。
                     </p>
                   </>

@@ -32,6 +32,14 @@
   --color-slate-900: #222221;
   --color-slate-950: #161615;
 
+  /* 角丸と影を控えめにして、道具らしい落ち着いた見た目に統一 */
+  --radius-xl: 0.5rem;
+  --radius-2xl: 0.625rem;
+  --radius-3xl: 0.75rem;
+  --shadow-lg: 0 1px 3px rgb(0 0 0 / 0.12);
+  --shadow-xl: 0 2px 6px rgb(0 0 0 / 0.14);
+  --shadow-2xl: 0 4px 12px rgb(0 0 0 / 0.18);
+
   /* 画面の面（背景・カード・入れ子・ホバー）とアクセント上の文字色 */
   --color-canvas: #141414;
   --color-surface: #1c1c1c;
@@ -154,11 +162,9 @@ body {
 @keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(14px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
@@ -190,19 +196,19 @@ body {
 }
 
 .animate-fade-up {
-  animation: fadeUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: fadeUp 0.2s ease-out both;
 }
 
 .animate-fade-up-delay-1 {
-  animation: fadeUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+  animation: fadeUp 0.2s ease-out both;
 }
 
 .animate-fade-up-delay-2 {
-  animation: fadeUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+  animation: fadeUp 0.2s ease-out both;
 }
 
 .animate-fade-up-delay-3 {
-  animation: fadeUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+  animation: fadeUp 0.2s ease-out both;
 }
 
 .animate-fade-in {

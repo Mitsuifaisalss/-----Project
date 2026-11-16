@@ -450,7 +450,7 @@ export default function Wizard({ onOpenStudio, onBackToWelcome, initialLand }: W
               >
                 <div className="flex items-start justify-between gap-2">
                   <div>
-                    <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-cyan-400/15 text-cyan-300 mr-2">
+                    <span className="font-mono text-xs px-2 py-0.5 rounded bg-cyan-400/15 text-cyan-300 mr-2">
                       {opt.era}
                     </span>
                     <span className="text-sm font-bold text-white">{opt.title}</span>
@@ -501,7 +501,7 @@ export default function Wizard({ onOpenStudio, onBackToWelcome, initialLand }: W
           <div className="bg-canvas ring-1 ring-white/10 rounded-2xl p-4 space-y-2">
             <div className="flex flex-wrap items-center justify-between gap-2 text-xs">
               <span className="font-bold text-cyan-300">
-                AI地下埋設物・ガス管推論レポート（{previewSubsurface.landTitle}）
+                地下埋設物の推定結果（{previewSubsurface.landTitle}）
               </span>
               <span className="font-mono text-xs text-amber-300 font-bold">
                 試掘・撤去・引込概算: 約{previewSubsurface.aiSummary.estimatedSubsurfaceCostManYen}万円
@@ -533,7 +533,7 @@ export default function Wizard({ onOpenStudio, onBackToWelcome, initialLand }: W
                         {typeId === opt.id && <Check className="w-4 h-4 text-cyan-400 shrink-0" />}
                       </div>
                       <div className="text-xs text-slate-400 mt-1 leading-relaxed">{opt.description}</div>
-                      <div className="font-mono text-[10px] text-cyan-300/80 mt-2">
+                      <div className="font-mono text-xs text-cyan-300/80 mt-2">
                         標準 {opt.defaults.width}×{opt.defaults.depth}m ・ {opt.defaults.floors}F
                       </div>
                     </ChoiceButton>
@@ -562,7 +562,7 @@ export default function Wizard({ onOpenStudio, onBackToWelcome, initialLand }: W
                 <div className="font-mono text-sm font-bold text-white">
                   {p.w}×{p.d}m
                 </div>
-                <div className="text-[11px] text-slate-400">{p.note}</div>
+                <div className="text-xs text-slate-400">{p.note}</div>
               </ChoiceButton>
             ))}
           </div>
@@ -613,7 +613,7 @@ export default function Wizard({ onOpenStudio, onBackToWelcome, initialLand }: W
                   className="py-3.5 text-center"
                 >
                   <div className="font-mono text-base font-bold text-white text-center">{f}F</div>
-                  <div className="text-[11px] text-slate-400 text-center">{f === 1 ? '平屋' : `${f}階建て`}</div>
+                  <div className="text-xs text-slate-400 text-center">{f === 1 ? '平屋' : `${f}階建て`}</div>
                 </ChoiceButton>
               ))}
             </div>
@@ -652,7 +652,8 @@ export default function Wizard({ onOpenStudio, onBackToWelcome, initialLand }: W
         </section>
 
         {/* 生成ボタン */}
-        <section className="flex flex-wrap items-center justify-between gap-4 bg-surface ring-1 ring-white/15 rounded-2xl px-5 py-4 animate-fade-up-delay-1">
+        {/* 長いページでもすぐ押せるよう画面下に固定 */}
+        <section className="sticky bottom-3 z-20 flex flex-wrap items-center justify-between gap-4 bg-surface ring-1 ring-white/15 rounded-2xl px-5 py-4 shadow-2xl">
           <div>
             <div className="text-xs text-slate-400">選択中の設計条件</div>
             <div className="text-sm font-semibold text-white mt-0.5">{summaryText}</div>
@@ -698,11 +699,11 @@ export default function Wizard({ onOpenStudio, onBackToWelcome, initialLand }: W
                       <span className="text-sm font-bold text-white">{v.title}</span>
                     </div>
                     {v.validation.isValid ? (
-                      <span className="flex items-center gap-1 text-[11px] text-emerald-400 font-semibold">
+                      <span className="flex items-center gap-1 text-xs text-emerald-400 font-semibold">
                         <Check className="w-3.5 h-3.5" /> 埋設整合OK
                       </span>
                     ) : (
-                      <span className="flex items-center gap-1 text-[11px] text-amber-400 font-semibold">
+                      <span className="flex items-center gap-1 text-xs text-amber-400 font-semibold">
                         <AlertCircle className="w-3.5 h-3.5" /> 要確認
                       </span>
                     )}
@@ -719,15 +720,15 @@ export default function Wizard({ onOpenStudio, onBackToWelcome, initialLand }: W
                   />
                   <div className="grid grid-cols-3 border-t border-white/10 text-center">
                     <div className="py-2.5">
-                      <div className="text-[10px] text-slate-400">延床面積</div>
+                      <div className="text-xs text-slate-400">延床面積</div>
                       <div className="font-mono text-sm font-bold text-white">{v.summary.totalArea}㎡</div>
                     </div>
                     <div className="py-2.5 border-x border-white/10">
-                      <div className="text-[10px] text-slate-400">部屋数</div>
+                      <div className="text-xs text-slate-400">部屋数</div>
                       <div className="font-mono text-sm font-bold text-white">{v.summary.roomCount}</div>
                     </div>
                     <div className="py-2.5">
-                      <div className="text-[10px] text-slate-400">水回り</div>
+                      <div className="text-xs text-slate-400">水回り</div>
                       <div className="font-mono text-sm font-bold text-white">{v.summary.wetCount}</div>
                     </div>
                   </div>
