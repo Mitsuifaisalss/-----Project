@@ -1,0 +1,235 @@
+@import "tailwindcss";
+
+/* 落ち着いたトーン: ネオンのcyanを製図ブルーに、青みのslateをニュートラルグレーに置き換え */
+@theme {
+  --font-sans: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic UI", "Meiryo", system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, "Noto Sans Mono", monospace;
+
+  --color-cyan-50: #f1f5f9;
+  --color-cyan-100: #dfe8f0;
+  --color-cyan-200: #c2d3e3;
+  --color-cyan-300: #a3bdd6;
+  --color-cyan-400: #86a6c6;
+  --color-cyan-500: #6788ab;
+  --color-cyan-600: #536f8f;
+  --color-cyan-700: #445a74;
+  --color-cyan-800: #384a5e;
+  --color-cyan-900: #2f3d4d;
+  --color-cyan-950: #1e2731;
+
+  --color-sky-300: #a3bdd6;
+  --color-sky-400: #86a6c6;
+
+  --color-slate-50: #f7f7f6;
+  --color-slate-100: #ededec;
+  --color-slate-200: #dcdcda;
+  --color-slate-300: #c2c2bf;
+  --color-slate-400: #9d9d99;
+  --color-slate-500: #797975;
+  --color-slate-600: #5d5d5a;
+  --color-slate-700: #474744;
+  --color-slate-800: #313130;
+  --color-slate-900: #222221;
+  --color-slate-950: #161615;
+
+  /* 角丸と影を控えめにして、道具らしい落ち着いた見た目に統一 */
+  --radius-xl: 0.5rem;
+  --radius-2xl: 0.625rem;
+  --radius-3xl: 0.75rem;
+  --shadow-lg: 0 1px 3px rgb(0 0 0 / 0.12);
+  --shadow-xl: 0 2px 6px rgb(0 0 0 / 0.14);
+  --shadow-2xl: 0 4px 12px rgb(0 0 0 / 0.18);
+
+  /* 画面の面（背景・カード・入れ子・ホバー）とアクセント上の文字色 */
+  --color-canvas: #141414;
+  --color-surface: #1c1c1c;
+  --color-raised: #242424;
+  --color-hover: #2b2b2b;
+  --color-on-accent: #141414;
+}
+
+html {
+  color-scheme: dark;
+}
+
+/* ライトモード: 面の色を明るくし、文字色・各色スケールを反転してコントラストを保つ */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --color-canvas: #f3f2ef;
+  --color-surface: #ffffff;
+  --color-raised: #f7f6f3;
+  --color-hover: #ebe9e4;
+  --color-on-accent: #ffffff;
+  --color-white: #1b1b1a;
+  --color-cyan-50: #1e2731;
+  --color-cyan-100: #2f3d4d;
+  --color-cyan-200: #384a5e;
+  --color-cyan-300: #445a74;
+  --color-cyan-400: #536f8f;
+  --color-cyan-500: #6788ab;
+  --color-cyan-600: #86a6c6;
+  --color-cyan-700: #a3bdd6;
+  --color-cyan-800: #c2d3e3;
+  --color-cyan-900: #dfe8f0;
+  --color-cyan-950: #f1f5f9;
+  --color-slate-50: #161615;
+  --color-slate-100: #222221;
+  --color-slate-200: #313130;
+  --color-slate-300: #474744;
+  --color-slate-400: #5d5d5a;
+  --color-slate-500: #797975;
+  --color-slate-600: #9d9d99;
+  --color-slate-700: #c2c2bf;
+  --color-slate-800: #dcdcda;
+  --color-slate-900: #ededec;
+  --color-slate-950: #f7f7f6;
+  --color-red-50: oklch(25.8% 0.092 26.042);
+  --color-red-100: oklch(39.6% 0.141 25.723);
+  --color-red-200: oklch(44.4% 0.177 26.899);
+  --color-red-300: oklch(50.5% 0.213 27.518);
+  --color-red-400: oklch(57.7% 0.245 27.325);
+  --color-red-500: oklch(63.7% 0.237 25.331);
+  --color-red-600: oklch(70.4% 0.191 22.216);
+  --color-red-700: oklch(80.8% 0.114 19.571);
+  --color-red-800: oklch(88.5% 0.062 18.334);
+  --color-red-900: oklch(93.6% 0.032 17.717);
+  --color-red-950: oklch(97.1% 0.013 17.38);
+  --color-amber-50: oklch(27.9% 0.077 45.635);
+  --color-amber-100: oklch(41.4% 0.112 45.904);
+  --color-amber-200: oklch(47.3% 0.137 46.201);
+  --color-amber-300: oklch(55.5% 0.163 48.998);
+  --color-amber-400: oklch(66.6% 0.179 58.318);
+  --color-amber-500: oklch(76.9% 0.188 70.08);
+  --color-amber-600: oklch(82.8% 0.189 84.429);
+  --color-amber-700: oklch(87.9% 0.169 91.605);
+  --color-amber-800: oklch(92.4% 0.12 95.746);
+  --color-amber-900: oklch(96.2% 0.059 95.617);
+  --color-amber-950: oklch(98.7% 0.022 95.277);
+  --color-emerald-50: oklch(26.2% 0.051 172.552);
+  --color-emerald-100: oklch(37.8% 0.077 168.94);
+  --color-emerald-200: oklch(43.2% 0.095 166.913);
+  --color-emerald-300: oklch(50.8% 0.118 165.612);
+  --color-emerald-400: oklch(59.6% 0.145 163.225);
+  --color-emerald-500: oklch(69.6% 0.17 162.48);
+  --color-emerald-600: oklch(76.5% 0.177 163.223);
+  --color-emerald-700: oklch(84.5% 0.143 164.978);
+  --color-emerald-800: oklch(90.5% 0.093 164.15);
+  --color-emerald-900: oklch(95% 0.052 163.051);
+  --color-emerald-950: oklch(97.9% 0.021 166.113);
+  --color-blue-50: oklch(28.2% 0.091 267.935);
+  --color-blue-100: oklch(37.9% 0.146 265.522);
+  --color-blue-200: oklch(42.4% 0.199 265.638);
+  --color-blue-300: oklch(48.8% 0.243 264.376);
+  --color-blue-400: oklch(54.6% 0.245 262.881);
+  --color-blue-500: oklch(62.3% 0.214 259.815);
+  --color-blue-600: oklch(70.7% 0.165 254.624);
+  --color-blue-700: oklch(80.9% 0.105 251.813);
+  --color-blue-800: oklch(88.2% 0.059 254.128);
+  --color-blue-900: oklch(93.2% 0.032 255.585);
+  --color-blue-950: oklch(97% 0.014 254.604);
+  --color-sky-50: oklch(29.3% 0.066 243.157);
+  --color-sky-100: oklch(39.1% 0.09 240.876);
+  --color-sky-200: oklch(44.3% 0.11 240.79);
+  --color-sky-300: oklch(50% 0.134 242.749);
+  --color-sky-400: oklch(58.8% 0.158 241.966);
+  --color-sky-500: oklch(68.5% 0.169 237.323);
+  --color-sky-600: oklch(74.6% 0.16 232.661);
+  --color-sky-700: oklch(82.8% 0.111 230.318);
+  --color-sky-800: oklch(90.1% 0.058 230.902);
+  --color-sky-900: oklch(95.1% 0.026 236.824);
+  --color-sky-950: oklch(97.7% 0.013 236.62);
+}
+
+body {
+  background: var(--color-canvas);
+  color: var(--color-white);
+  transition: background-color 0.2s ease;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-cyan-400);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes dashDraw {
+  from {
+    stroke-dashoffset: 240;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.2s ease-out both;
+}
+
+.animate-fade-up-delay-1 {
+  animation: fadeUp 0.2s ease-out both;
+}
+
+.animate-fade-up-delay-2 {
+  animation: fadeUp 0.2s ease-out both;
+}
+
+.animate-fade-up-delay-3 {
+  animation: fadeUp 0.2s ease-out both;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out both;
+}
+
+.animate-float-slow {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+@keyframes scanLine {
+  0%, 100% {
+    transform: translateY(-40px);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(40px);
+    opacity: 1;
+  }
+}
+
+.animate-scan-line {
+  animation: scanLine 1.2s ease-in-out infinite;
+}
