@@ -655,7 +655,7 @@ export function inferLandSubsurface(
       {
         id: 'GAS-ROW-CROSS',
         kind: 'gas_low',
-        label: '⚠️ 推論：西隣住宅への越境・共用ガス枝管 (25A)',
+        label: '推論：西隣住宅への越境・共用ガス枝管 (25A)',
         spec: '隣地現役供給の疑いあり GL-0.50m [切断厳禁・要協議]',
         x1: 0.0,
         z1: -hd * 0.1,
@@ -671,7 +671,7 @@ export function inferLandSubsurface(
       {
         id: 'SEWER-ROW-CROSS',
         kind: 'sewer_Foul',
-        label: '⚠️ 推論：東西隣地を貫通する旧私設合流下水管',
+        label: '推論：東西隣地を貫通する旧私設合流下水管',
         spec: '旧コンクリ土管 φ150mm GL-0.85m [隣地排水現役]',
         x1: -hw - 1.2,
         z1: -hd * 0.28,
@@ -702,7 +702,7 @@ export function inferLandSubsurface(
       pipes.push({
         id: 'SUR-CROSS-DRAIN',
         kind: 'sewer_Foul',
-        label: '⚠️ 推論：西隣住宅からの越境私設排水管 (VU75)',
+        label: '推論：西隣住宅からの越境私設排水管 (VU75)',
         spec: '西境界から敷地内0.6mを通過 GL-0.65m [破損注意]',
         x1: -hw - 0.8,
         z1: -hd * 0.2,
@@ -724,7 +724,7 @@ export function inferLandSubsurface(
     obstacles.push({
       id: 'SUR-RC-WALL',
       kind: 'old_foundation',
-      label: '⚠️ 推論：西隣RCマンション工事時の残置H鋼山留め・越境フーチング',
+      label: '推論：西隣RCマンション工事時の残置H鋼山留め・越境フーチング',
       x: -hw + 0.35,
       z: 0.0,
       w: 0.5,
@@ -1182,19 +1182,19 @@ export function SubsurfaceAnalyzerView({
   const svgMarkup = renderSubsurfaceSurveyCadSvg(blueprint, analysis, showNewBuildingOverlay);
 
   return (
-    <div className="w-full h-full flex flex-col bg-[#070B14] overflow-hidden">
+    <div className="w-full h-full flex flex-col bg-canvas overflow-hidden">
       {/* 上部コントロールバー：土地の過去履歴・前面道路・周辺環境の切り替え */}
-      <div className="px-4 py-2.5 bg-[#0B1222] border-b border-white/10 flex flex-wrap items-center justify-between gap-2 z-10">
+      <div className="px-4 py-2.5 bg-surface border-b border-white/10 flex flex-wrap items-center justify-between gap-2 z-10">
         <div className="flex flex-wrap items-center gap-2">
           <div className="flex items-center gap-1.5">
-            <span className="text-[11px] font-semibold text-slate-300">① 前回建っていた建物:</span>
+            <span className="text-xs font-semibold text-slate-300">① 前回建っていた建物:</span>
             <select
               value={prevType}
               onChange={(e) => onChangePrevType(e.target.value as PreviousBuildingType)}
-              className="bg-[#070B14] ring-1 ring-cyan-400/50 rounded-lg px-2 py-1 text-xs font-medium text-white cursor-pointer"
+              className="bg-canvas ring-1 ring-cyan-400/50 rounded-lg px-2 py-1 text-xs font-medium text-white cursor-pointer"
             >
               {PREVIOUS_BUILDING_OPTIONS.map((opt) => (
-                <option key={opt.id} value={opt.id} className="bg-[#0B1222]">
+                <option key={opt.id} value={opt.id} className="bg-surface">
                   {opt.title} ({opt.era})
                 </option>
               ))}
@@ -1202,14 +1202,14 @@ export function SubsurfaceAnalyzerView({
           </div>
 
           <div className="flex items-center gap-1.5">
-            <span className="text-[11px] font-semibold text-slate-300">② 前面道路・本管:</span>
+            <span className="text-xs font-semibold text-slate-300">② 前面道路・本管:</span>
             <select
               value={roadDir}
               onChange={(e) => onChangeRoadDir(e.target.value as FrontRoadDirection)}
-              className="bg-[#070B14] ring-1 ring-white/15 rounded-lg px-2 py-1 text-xs text-white cursor-pointer"
+              className="bg-canvas ring-1 ring-white/15 rounded-lg px-2 py-1 text-xs text-white cursor-pointer"
             >
               {FRONT_ROAD_OPTIONS.map((opt) => (
-                <option key={opt.id} value={opt.id} className="bg-[#0B1222]">
+                <option key={opt.id} value={opt.id} className="bg-surface">
                   {opt.label}
                 </option>
               ))}
@@ -1217,14 +1217,14 @@ export function SubsurfaceAnalyzerView({
           </div>
 
           <div className="flex items-center gap-1.5">
-            <span className="text-[11px] font-semibold text-slate-300">③ 周囲の建物環境:</span>
+            <span className="text-xs font-semibold text-slate-300">③ 周囲の建物環境:</span>
             <select
               value={surroundingType}
               onChange={(e) => onChangeSurrounding(e.target.value as SurroundingContextType)}
-              className="bg-[#070B14] ring-1 ring-white/15 rounded-lg px-2 py-1 text-xs text-white cursor-pointer"
+              className="bg-canvas ring-1 ring-white/15 rounded-lg px-2 py-1 text-xs text-white cursor-pointer"
             >
               {SURROUNDING_OPTIONS.map((opt) => (
-                <option key={opt.id} value={opt.id} className="bg-[#0B1222]">
+                <option key={opt.id} value={opt.id} className="bg-surface">
                   {opt.label}
                 </option>
               ))}
@@ -1244,10 +1244,10 @@ export function SubsurfaceAnalyzerView({
       </div>
 
       {/* AI推論サマリーバナー */}
-      <div className="px-4 py-2 bg-[#0E172A] border-b border-white/10 flex flex-wrap items-center justify-between gap-2 text-xs">
+      <div className="px-4 py-2 bg-raised border-b border-white/10 flex flex-wrap items-center justify-between gap-2 text-xs">
         <div className="flex items-center gap-2">
           <span
-            className={`px-2 py-0.5 rounded-md font-mono text-[10px] font-bold ${
+            className={`px-2 py-0.5 rounded-md font-mono text-xs font-bold ${
               analysis.aiSummary.overallRiskLevel === 'HIGH'
                 ? 'bg-red-500/20 text-red-300 ring-1 ring-red-400/40'
                 : 'bg-amber-500/20 text-amber-300 ring-1 ring-amber-400/40'
@@ -1259,7 +1259,7 @@ export function SubsurfaceAnalyzerView({
             {analysis.aiSummary.keyFindings[0]}
           </span>
         </div>
-        <div className="font-mono text-[11px] text-slate-300">
+        <div className="font-mono text-xs text-slate-300">
           推論配管: <strong className="text-amber-300">{analysis.pipes.length}系統</strong> ／ 地中障害物:{' '}
           <strong className="text-red-300">{analysis.obstacles.length}箇所</strong>
         </div>
@@ -1267,7 +1267,7 @@ export function SubsurfaceAnalyzerView({
 
       {/* メイン2D 埋設インフラ・地下断面CAD図面 */}
       <div
-        className="flex-1 overflow-auto p-4 flex items-center justify-center bg-[#070B14] [&>svg]:max-h-full [&>svg]:w-auto [&>svg]:rounded-xl [&>svg]:shadow-2xl"
+        className="flex-1 overflow-auto p-4 flex items-center justify-center bg-canvas [&>svg]:max-h-full [&>svg]:w-auto [&>svg]:rounded-xl [&>svg]:shadow-2xl"
         dangerouslySetInnerHTML={{ __html: svgMarkup }}
       />
     </div>

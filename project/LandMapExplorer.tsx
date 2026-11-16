@@ -1,3 +1,4 @@
+import ThemeToggle from './ThemeToggle';
 import {
   useEffect,
   useMemo,
@@ -381,7 +382,7 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
   const conf = (v: number) => `${Math.round(v * 100)}%`;
 
   return (
-    <div className="fixed inset-0 bg-[#070B14] text-slate-100 flex flex-col md:flex-row select-none antialiased">
+    <div className="fixed inset-0 bg-canvas text-slate-100 flex flex-col md:flex-row select-none antialiased">
       {/* ===== 地図エリア ===== */}
       <div className="relative flex-1 min-h-0">
         <div
@@ -431,7 +432,7 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
                   width={land.width / proj.mpp}
                   height={land.depth / proj.mpp}
                   fill="rgba(34,211,238,0.14)"
-                  stroke="#22D3EE"
+                  stroke="#86A6C6"
                   strokeWidth={2.5}
                 />
               )}
@@ -480,12 +481,12 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
                     cy={proj.ay}
                     r={70 / proj.mpp}
                     fill="rgba(34,211,238,0.10)"
-                    stroke="#22D3EE"
+                    stroke="#86A6C6"
                     strokeWidth={1.8}
                     strokeDasharray="4 4"
                     className="animate-pulse"
                   />
-                  <circle cx={proj.ax} cy={proj.ay} r={6} fill="#22D3EE" />
+                  <circle cx={proj.ax} cy={proj.ay} r={6} fill="#86A6C6" />
                 </>
               )}
             </svg>
@@ -498,7 +499,7 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
             <button
               onClick={onBack}
               aria-label="戻る"
-              className="pointer-events-auto h-12 w-12 shrink-0 grid place-items-center rounded-2xl bg-[#070B14]/90 backdrop-blur-md ring-1 ring-white/15 hover:bg-[#111A2E] cursor-pointer"
+              className="pointer-events-auto h-12 w-12 shrink-0 grid place-items-center rounded-2xl bg-canvas/90 backdrop-blur-md ring-1 ring-white/15 hover:bg-raised cursor-pointer"
             >
               <ArrowLeft className="w-5 h-5" />
             </button>
@@ -507,7 +508,7 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
                 e.preventDefault();
                 handleSearch();
               }}
-              className="pointer-events-auto flex-1 max-w-xl h-12 flex items-center gap-2 px-4 rounded-2xl bg-[#070B14]/90 backdrop-blur-md ring-1 ring-white/15 focus-within:ring-cyan-400/70"
+              className="pointer-events-auto flex-1 max-w-xl h-12 flex items-center gap-2 px-4 rounded-2xl bg-canvas/90 backdrop-blur-md ring-1 ring-white/15 focus-within:ring-cyan-400/70"
             >
               <Search className="w-5 h-5 text-cyan-400 shrink-0" />
               <input
@@ -530,15 +531,15 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
                   onClick={() => handleSelectPresetSite(s)}
                   className={`shrink-0 h-9 px-3.5 rounded-xl text-xs font-medium flex items-center gap-2 backdrop-blur-md ring-1 transition active:scale-95 cursor-pointer ${
                     isSelected
-                      ? 'bg-cyan-400 text-[#070B14] ring-cyan-300 font-semibold shadow-lg shadow-cyan-500/20'
-                      : 'bg-[#070B14]/85 text-slate-200 ring-white/15 hover:bg-[#111A2E]'
+                      ? 'bg-cyan-400 text-on-accent ring-cyan-300 font-semibold shadow-lg'
+                      : 'bg-canvas/85 text-slate-200 ring-white/15 hover:bg-raised'
                   }`}
                 >
-                  <MapPin className={`w-3.5 h-3.5 ${isSelected ? 'text-[#070B14]' : 'text-cyan-400'}`} />
+                  <MapPin className={`w-3.5 h-3.5 ${isSelected ? 'text-on-accent' : 'text-cyan-400'}`} />
                   <span>{s.label}</span>
                   <span
-                    className={`px-1.5 py-0.5 rounded text-[10px] font-mono ${
-                      isSelected ? 'bg-[#070B14]/20 text-[#070B14]' : 'bg-white/10 text-cyan-300'
+                    className={`px-1.5 py-0.5 rounded text-xs font-mono ${
+                      isSelected ? 'bg-canvas/20 text-on-accent' : 'bg-white/10 text-cyan-300'
                     }`}
                   >
                     {s.badge}
@@ -561,13 +562,14 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
               key={b.label}
               onClick={b.onClick}
               aria-label={b.label}
-              className="h-12 w-12 grid place-items-center rounded-2xl bg-[#070B14]/90 backdrop-blur-md ring-1 ring-white/15 hover:bg-[#111A2E] active:scale-95 transition cursor-pointer"
+              className="h-12 w-12 grid place-items-center rounded-2xl bg-canvas/90 backdrop-blur-md ring-1 ring-white/15 hover:bg-raised active:scale-95 transition cursor-pointer"
             >
               {b.icon}
             </button>
           ))}
+          <ThemeToggle className="h-12 w-12 grid place-items-center rounded-2xl bg-canvas/90 backdrop-blur-md ring-1 ring-white/15 text-white hover:bg-raised active:scale-95 transition cursor-pointer" />
           {showLayerMenu && (
-            <div className="absolute right-14 bottom-0 w-64 rounded-2xl bg-[#070B14]/95 backdrop-blur-md ring-1 ring-white/15 p-1.5 shadow-2xl">
+            <div className="absolute right-14 bottom-0 w-64 rounded-2xl bg-canvas/95 backdrop-blur-md ring-1 ring-white/15 p-1.5 shadow-2xl">
               {(Object.keys(LAYERS) as BaseLayer[]).map((k) => (
                 <button
                   key={k}
@@ -588,29 +590,26 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
 
         {/* 地図凡例＆操作ガイド */}
         {!panelOpen && (
-          <div className="absolute bottom-7 left-1/2 -translate-x-1/2 px-5 py-3 rounded-2xl bg-[#070B14]/90 backdrop-blur-md ring-1 ring-cyan-400/40 text-sm flex items-center gap-2.5 animate-fade-up whitespace-nowrap shadow-xl">
+          <div className="absolute bottom-7 left-1/2 -translate-x-1/2 px-5 py-3 rounded-2xl bg-canvas/90 backdrop-blur-md ring-1 ring-cyan-400/40 text-sm flex items-center gap-2.5 animate-fade-up whitespace-nowrap shadow-xl">
             <MapPin className="w-4 h-4 text-cyan-400 animate-bounce" />
-            <span>地図上の知りたい土地をタップすると、AIが地下埋設図と設計図を自動作成します</span>
+            <span>調べたい土地をタップすると、地下埋設図と設計図を作成します</span>
           </div>
         )}
-        <div className="absolute bottom-1.5 left-3 text-[10px] text-white/75 pointer-events-none drop-shadow">
+        <div className="absolute bottom-1.5 left-3 text-xs text-white/75 pointer-events-none drop-shadow">
           地図タイル：国土地理院 ／ 建物・道路ベクトル：© OpenStreetMap contributors
         </div>
       </div>
 
       {/* ===== AI地下埋設図・設計図ドロワー（タブレット縦：下シート ／ タブレット横・PC：右ワイドパネル） ===== */}
       {panelOpen && (
-        <aside className="w-full md:w-[520px] lg:w-[580px] max-h-[65vh] md:max-h-none md:h-full flex flex-col bg-[#0B1222] border-t md:border-t-0 md:border-l border-white/15 animate-fade-up shadow-2xl">
+        <aside className="w-full md:w-[520px] lg:w-[580px] max-h-[65vh] md:max-h-none md:h-full flex flex-col bg-surface border-t md:border-t-0 md:border-l border-white/15 animate-fade-up shadow-2xl">
           <div className="md:hidden mx-auto mt-2 h-1.5 w-12 rounded-full bg-white/20" />
           <div className="px-5 pt-3.5 pb-3 flex items-start justify-between gap-3 border-b border-white/10">
             <div className="min-w-0">
               <div className="flex items-center gap-2">
-                <span className="text-[11px] text-cyan-400 font-mono tracking-[0.16em] font-semibold">
-                  AI LAND &amp; SUBSURFACE CAD
-                </span>
                 {analysis && (
                   <span
-                    className={`px-2 py-0.5 rounded-md text-[10px] font-mono font-bold ring-1 ${
+                    className={`px-2 py-0.5 rounded-md text-xs font-mono font-bold ring-1 ${
                       RISK_STYLE[analysis.aiSummary.overallRiskLevel]
                     }`}
                   >
@@ -624,7 +623,7 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
                 </div>
                 {site && (
                   <span
-                    className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold shrink-0 ${
+                    className={`px-2 py-0.5 rounded text-xs font-mono font-bold shrink-0 ${
                       site.siteStatus === 'existing_building'
                         ? 'bg-emerald-500/20 text-emerald-300 ring-1 ring-emerald-400/40'
                         : site.siteStatus === 'parking_lot'
@@ -668,7 +667,7 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
             <div className="flex-1 grid place-items-center py-14">
               <div className="flex flex-col items-center gap-3 text-slate-200 text-sm text-center px-6">
                 <ScanLine className="w-11 h-11 text-cyan-400 animate-pulse" />
-                <div className="font-semibold text-base">AIが選択された土地と周辺環境を解析中…</div>
+                <div className="font-semibold text-base">土地と周辺環境を解析しています…</div>
                 <div className="text-xs text-slate-400">
                   周囲の建物・前面道路本管・旧建物履歴から地下ガス管と設計図を作成しています
                 </div>
@@ -694,12 +693,12 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
           {phase.kind === 'done' && site && land && analysis && (
             <>
               {/* タブレット向け大型3タブ（① AI生成図面 ／ ② 埋設リスク＆一覧 ／ ③ 実データ根拠・補正） */}
-              <div className="px-4 flex gap-1 border-b border-white/10 bg-[#080D1A]">
+              <div className="px-4 flex gap-1 border-b border-white/10 bg-canvas">
                 {(
                   [
-                    ['drawing', '① AI自動作図 (CAD)'],
-                    ['result', '② 埋設リスク・一覧'],
-                    ['evidence', '③ 根拠・現地補正']
+                    ['drawing', '図面'],
+                    ['result', '埋設物の一覧'],
+                    ['evidence', '根拠と現地補正']
                   ] as const
                 ).map(([k, label]) => (
                   <button
@@ -726,7 +725,7 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
                           onClick={() => setDrawingMode('subsurface')}
                           className={`flex-1 py-2 px-3 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition cursor-pointer ${
                             drawingMode === 'subsurface'
-                              ? 'bg-cyan-400 text-[#070B14] shadow'
+                              ? 'bg-cyan-400 text-on-accent shadow'
                               : 'text-slate-300 hover:bg-white/5'
                           }`}
                         >
@@ -737,17 +736,17 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
                           onClick={() => setDrawingMode('floorplan')}
                           className={`flex-1 py-2 px-3 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition cursor-pointer ${
                             drawingMode === 'floorplan'
-                              ? 'bg-cyan-400 text-[#070B14] shadow'
+                              ? 'bg-cyan-400 text-on-accent shadow'
                               : 'text-slate-300 hover:bg-white/5'
                           }`}
                         >
                           <ClipboardList className="w-3.5 h-3.5" />
-                          AI新築1F間取り図 (埋設整合済)
+                          新築1F間取り図（埋設物と整合済み）
                         </button>
                       </div>
 
                       {drawingMode === 'subsurface' && (
-                        <label className="flex items-center gap-1.5 px-2 text-[11px] text-slate-300 cursor-pointer select-none">
+                        <label className="flex items-center gap-1.5 px-2 text-xs text-slate-300 cursor-pointer select-none">
                           <input
                             type="checkbox"
                             checked={showFoundationOverlay}
@@ -761,7 +760,7 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
 
                     {/* 要点サマリーバー */}
                     <div className="rounded-xl bg-cyan-500/10 ring-1 ring-cyan-400/30 px-3.5 py-2.5 text-xs text-cyan-100 leading-relaxed">
-                      <strong className="text-cyan-300 font-semibold">AI解析サマリー：</strong>
+                      <strong className="text-cyan-300 font-semibold">解析結果：</strong>
                       {analysis.aiSummary.keyFindings[0]}
                     </div>
 
@@ -777,7 +776,7 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
                         dangerouslySetInnerHTML={{ __html: floorPlanSvgMarkup }}
                       />
                     ) : (
-                      <div className="rounded-2xl bg-[#070B14] p-5 ring-1 ring-cyan-400/30 text-center space-y-3">
+                      <div className="rounded-2xl bg-canvas p-5 ring-1 ring-cyan-400/30 text-center space-y-3">
                         <div className="inline-flex p-3 rounded-full bg-cyan-400/10 text-cyan-300">
                           <ClipboardList className="w-7 h-7" />
                         </div>
@@ -789,7 +788,7 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
                         </p>
                         <button
                           onClick={() => onPlanBuilding(land)}
-                          className="h-10 px-4 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-[#070B14] font-bold text-xs inline-flex items-center gap-1.5 shadow-md cursor-pointer transition active:scale-95"
+                          className="h-10 px-4 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-on-accent font-bold text-xs inline-flex items-center gap-1.5 shadow-md cursor-pointer transition active:scale-95"
                         >
                           <ClipboardList className="w-4 h-4" /> この土地の形状に合わせて新築プランを設計
                         </button>
@@ -798,18 +797,18 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
 
                     {/* 簡易変更セレクト（タブレットで図面を見ながら旧建物履歴を即座に切り替え可能） */}
                     <div className="rounded-xl bg-white/[0.03] ring-1 ring-white/10 p-3 space-y-2">
-                      <div className="text-[11px] text-slate-400 font-medium">
-                        前回この土地に建っていた建物履歴（切り替えると上のAI埋設図が即時再計算されます）
+                      <div className="text-xs text-slate-400 font-medium">
+                        前回この土地に建っていた建物履歴（切り替えると上の埋設図を再計算します）
                       </div>
                       <select
                         value={land.prevType}
                         onChange={(e) =>
                           setOverrides((s) => ({ ...s, prev: e.target.value as PreviousBuildingType }))
                         }
-                        className="w-full h-11 rounded-xl bg-[#070B14] ring-1 ring-cyan-400/40 px-3 text-xs sm:text-sm text-white outline-none cursor-pointer"
+                        className="w-full h-11 rounded-xl bg-canvas ring-1 ring-cyan-400/40 px-3 text-xs sm:text-sm text-white outline-none cursor-pointer"
                       >
                         {PREVIOUS_BUILDING_OPTIONS.map((o) => (
-                          <option key={o.id} value={o.id} className="bg-[#0B1222]">
+                          <option key={o.id} value={o.id} className="bg-surface">
                             {o.title}（{o.era}）— {o.badge}
                           </option>
                         ))}
@@ -822,18 +821,18 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
                   <>
                     <div className="grid grid-cols-3 gap-2">
                       <div className={`rounded-2xl ring-1 p-3 ${RISK_STYLE[analysis.aiSummary.overallRiskLevel]}`}>
-                        <div className="text-[11px] opacity-80">埋設リスク</div>
+                        <div className="text-xs opacity-80">埋設リスク</div>
                         <div className="text-xl font-bold">{analysis.aiSummary.overallRiskLevel}</div>
                       </div>
                       <div className="rounded-2xl ring-1 ring-white/10 bg-white/[0.03] p-3">
-                        <div className="text-[11px] text-slate-400">埋設管</div>
+                        <div className="text-xs text-slate-400">埋設管</div>
                         <div className="text-xl font-bold">
                           {analysis.pipes.length}
                           <span className="text-xs font-normal ml-0.5">系統</span>
                         </div>
                       </div>
                       <div className="rounded-2xl ring-1 ring-white/10 bg-white/[0.03] p-3">
-                        <div className="text-[11px] text-slate-400">撤去・試掘概算</div>
+                        <div className="text-xs text-slate-400">撤去・試掘概算</div>
                         <div className="text-xl font-bold">
                           {analysis.aiSummary.estimatedSubsurfaceCostManYen}
                           <span className="text-xs font-normal ml-0.5">万円</span>
@@ -866,7 +865,7 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
                             />
                             <div className="min-w-0 flex-1">
                               <div className="text-sm truncate">{p.label.replace('推論：', '')}</div>
-                              <div className="text-[11px] text-slate-400 font-mono">
+                              <div className="text-xs text-slate-400 font-mono">
                                 GL-{p.depth2.toFixed(2)}m ・ 確度 {conf(p.confidence)} ・ {p.reason}
                               </div>
                             </div>
@@ -877,7 +876,7 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
                           <span className="w-3 h-3 rounded-sm shrink-0 bg-red-400" />
                           <div className="min-w-0 flex-1">
                             <div className="text-sm truncate">{o.label.replace('推論：', '')}</div>
-                            <div className="text-[11px] text-slate-400 font-mono">
+                            <div className="text-xs text-slate-400 font-mono">
                               GL-{o.depthTop}〜-{o.depthBottom}m ・ 撤去 約{o.removalCostManYen}万円
                             </div>
                           </div>
@@ -896,7 +895,7 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
                       {site.evidence.map((ev, i) => (
                         <div key={i} className="flex items-start gap-3 rounded-xl bg-white/[0.03] px-3 py-2.5">
                           <span
-                            className={`mt-0.5 text-[10px] font-mono px-1.5 py-0.5 rounded shrink-0 ${
+                            className={`mt-0.5 text-xs font-mono px-1.5 py-0.5 rounded shrink-0 ${
                               ev.source === '推定'
                                 ? 'bg-amber-400/15 text-amber-300'
                                 : 'bg-cyan-400/15 text-cyan-300'
@@ -905,7 +904,7 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
                             {ev.source}
                           </span>
                           <div className="min-w-0">
-                            <div className="text-[11px] text-slate-400">{ev.label}</div>
+                            <div className="text-xs text-slate-400">{ev.label}</div>
                             <div className="text-sm">{ev.value}</div>
                           </div>
                         </div>
@@ -913,7 +912,7 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
                     </div>
 
                     <div className="space-y-3">
-                      <div className="text-xs text-slate-400">AI判定（現地確認と異なる場合はタップして補正）</div>
+                      <div className="text-xs text-slate-400">自動判定（現地と異なる場合はタップして修正）</div>
                       {[
                         {
                           label: '解体・既存建物の種別',
@@ -938,7 +937,7 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
                         }
                       ].map((f) => (
                         <div key={f.label}>
-                          <div className="flex justify-between text-[11px] mb-1">
+                          <div className="flex justify-between text-xs mb-1">
                             <span className="text-slate-300">{f.label}</span>
                             <span className={f.conf >= 0.7 ? 'text-emerald-300' : 'text-amber-300'}>
                               確度 {conf(f.conf)}
@@ -950,7 +949,7 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
                             className="w-full h-12 rounded-xl bg-white/[0.04] ring-1 ring-white/10 px-3 text-sm outline-none focus:ring-cyan-400/60 cursor-pointer"
                           >
                             {f.opts.map((o) => (
-                              <option key={o.id} value={o.id} className="bg-[#0E1628]">
+                              <option key={o.id} value={o.id} className="bg-surface">
                                 {o.label}
                               </option>
                             ))}
@@ -958,17 +957,17 @@ export default function LandMapExplorer({ onBack, onOpenStudio, onPlanBuilding, 
                         </div>
                       ))}
                     </div>
-                    <p className="text-[11px] text-slate-400">
+                    <p className="text-xs text-slate-400">
                       ヒント：右上の地図切替ボタンから「1974-78年 航空写真」を表示すると、昭和期に建っていた旧建物の配置を視覚的に照合できます。
                     </p>
                   </>
                 )}
               </div>
 
-              <div className="p-4 border-t border-white/10 bg-[#080D1A] grid grid-cols-2 gap-2.5">
+              <div className="p-4 border-t border-white/10 bg-canvas grid grid-cols-2 gap-2.5">
                 <button
                   onClick={() => onOpenStudio(land)}
-                  className="h-12 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-[#070B14] font-bold text-sm flex items-center justify-center gap-2 active:scale-[0.98] transition shadow-lg shadow-cyan-500/20 cursor-pointer"
+                  className="h-12 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-on-accent font-bold text-sm flex items-center justify-center gap-2 active:scale-[0.98] transition shadow-lg cursor-pointer"
                 >
                   <Box className="w-5 h-5" /> 3D地下X線・詳細CAD
                 </button>

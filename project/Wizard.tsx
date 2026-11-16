@@ -1,3 +1,4 @@
+import ThemeToggle from './ThemeToggle';
 import { useMemo, useState, type ReactNode } from 'react';
 import { ArrowRight, ArrowLeft, Check, AlertCircle, Home, Building2, Compass, MapPin, Radar } from 'lucide-react';
 import {
@@ -276,8 +277,8 @@ function ChoiceButton({
       onClick={onClick}
       className={`text-left rounded-2xl ring-1 transition cursor-pointer ${
         selected
-          ? 'bg-cyan-400/15 ring-cyan-400 text-white shadow-lg shadow-cyan-500/10'
-          : 'bg-[#0B1222] ring-white/10 text-slate-200 hover:bg-[#111C33] hover:ring-white/20'
+          ? 'bg-cyan-400/15 ring-cyan-400 text-white shadow-lg'
+          : 'bg-surface ring-white/10 text-slate-200 hover:bg-raised hover:ring-white/20'
       } ${className}`}
     >
       {children}
@@ -379,15 +380,15 @@ export default function Wizard({ onOpenStudio, onBackToWelcome, initialLand }: W
   };
 
   return (
-    <div className="min-h-screen w-full bg-[#070B14] text-slate-100 antialiased">
+    <div className="min-h-screen w-full bg-canvas text-slate-100 antialiased">
       {/* ヘッダー */}
-      <header className="sticky top-0 z-30 border-b border-white/10 bg-[#070B14]/90 backdrop-blur-xl">
+      <header className="sticky top-0 z-30 border-b border-white/10 bg-canvas/90 backdrop-blur-xl">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             {onBackToWelcome && (
               <button
                 onClick={onBackToWelcome}
-                className="flex items-center gap-1.5 h-11 px-3.5 rounded-xl text-xs font-semibold ring-1 ring-white/15 bg-[#0B1222] text-slate-200 hover:bg-[#111C33] transition cursor-pointer"
+                className="flex items-center gap-1.5 h-11 px-3.5 rounded-xl text-xs font-semibold ring-1 ring-white/15 bg-surface text-slate-200 hover:bg-raised transition cursor-pointer"
               >
                 <ArrowLeft className="w-4 h-4 text-cyan-400" />
                 土地マップへ戻る
@@ -398,7 +399,7 @@ export default function Wizard({ onOpenStudio, onBackToWelcome, initialLand }: W
             </div>
             <div>
               <h1 className="text-base font-bold tracking-tight text-white">
-                STRATUM GEO-BIM — 地下埋設整合・新築プラン作成
+                新築プラン作成
               </h1>
               <p className="text-xs text-slate-400">
                 {initialLand
@@ -408,24 +409,27 @@ export default function Wizard({ onOpenStudio, onBackToWelcome, initialLand }: W
             </div>
           </div>
 
-          <div className="hidden md:flex items-center gap-2 font-mono text-xs text-slate-400">
-            <span className="px-2.5 py-1 rounded-lg bg-[#0B1222] ring-1 ring-white/10">01 土地マップ選択</span>
-            <span>→</span>
-            <span className="px-2.5 py-1 rounded-lg bg-cyan-400 text-[#070B14] font-bold">02 新築プラン比較</span>
-            <span>→</span>
-            <span className="px-2.5 py-1 rounded-lg bg-[#0B1222] ring-1 ring-white/10">03 3D地下X線・CADスタジオ</span>
+          <div className="flex items-center gap-3">
+            <ol className="hidden md:flex items-center gap-1.5 text-xs text-slate-400" aria-label="進行状況">
+              <li className="px-2.5 py-1 rounded-lg">1. 土地を選ぶ</li>
+              <li aria-hidden>›</li>
+              <li className="px-2.5 py-1 rounded-lg bg-cyan-400/15 text-cyan-300 font-semibold" aria-current="step">2. プランを比べる</li>
+              <li aria-hidden>›</li>
+              <li className="px-2.5 py-1 rounded-lg">3. スタジオで確認</li>
+            </ol>
+            <ThemeToggle />
           </div>
         </div>
       </header>
 
       <main className="max-w-6xl mx-auto px-4 sm:px-6 py-8 space-y-9">
         {/* 00 土地の過去履歴・前面道路・周囲の建物環境からの地下埋設AI推論 */}
-        <section className="animate-fade-up bg-[#0B1222] ring-1 ring-cyan-400/40 rounded-3xl p-5 sm:p-6 space-y-4 shadow-xl">
+        <section className="animate-fade-up bg-surface ring-1 ring-cyan-400/40 rounded-3xl p-5 sm:p-6 space-y-4 shadow-xl">
           <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-3">
             <div>
-              <div className="font-mono text-xs text-cyan-400 font-bold flex items-center gap-1.5">
+              <div className="text-xs text-cyan-300 font-semibold flex items-center gap-1.5">
                 <MapPin className="w-3.5 h-3.5" />
-                STEP 00 — LAND &amp; BURIED UTILITY INFERENCE
+                土地の条件
               </div>
               <h2 className="text-base sm:text-lg font-bold text-white mt-0.5">
                 土地の過去履歴・周囲の建物から「地下のガス管・上下水管・地中障害物」を推論
@@ -446,7 +450,7 @@ export default function Wizard({ onOpenStudio, onBackToWelcome, initialLand }: W
               >
                 <div className="flex items-start justify-between gap-2">
                   <div>
-                    <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-cyan-400/15 text-cyan-300 mr-2">
+                    <span className="font-mono text-xs px-2 py-0.5 rounded bg-cyan-400/15 text-cyan-300 mr-2">
                       {opt.era}
                     </span>
                     <span className="text-sm font-bold text-white">{opt.title}</span>
@@ -466,10 +470,10 @@ export default function Wizard({ onOpenStudio, onBackToWelcome, initialLand }: W
               <select
                 value={frontRoad}
                 onChange={(e) => setFrontRoad(e.target.value as FrontRoadDirection)}
-                className="w-full h-12 bg-[#070B14] ring-1 ring-white/15 rounded-xl px-3 text-xs sm:text-sm text-white cursor-pointer"
+                className="w-full h-12 bg-canvas ring-1 ring-white/15 rounded-xl px-3 text-xs sm:text-sm text-white cursor-pointer"
               >
                 {FRONT_ROAD_OPTIONS.map((r) => (
-                  <option key={r.id} value={r.id} className="bg-[#0B1222]">
+                  <option key={r.id} value={r.id} className="bg-surface">
                     {r.label} — {r.note}
                   </option>
                 ))}
@@ -482,10 +486,10 @@ export default function Wizard({ onOpenStudio, onBackToWelcome, initialLand }: W
               <select
                 value={surrounding}
                 onChange={(e) => setSurrounding(e.target.value as SurroundingContextType)}
-                className="w-full h-12 bg-[#070B14] ring-1 ring-white/15 rounded-xl px-3 text-xs sm:text-sm text-white cursor-pointer"
+                className="w-full h-12 bg-canvas ring-1 ring-white/15 rounded-xl px-3 text-xs sm:text-sm text-white cursor-pointer"
               >
                 {SURROUNDING_OPTIONS.map((s) => (
-                  <option key={s.id} value={s.id} className="bg-[#0B1222]">
+                  <option key={s.id} value={s.id} className="bg-surface">
                     {s.label} — {s.note}
                   </option>
                 ))}
@@ -494,10 +498,10 @@ export default function Wizard({ onOpenStudio, onBackToWelcome, initialLand }: W
           </div>
 
           {/* リアルタイムAI地下埋設推論レポート */}
-          <div className="bg-[#070B14] ring-1 ring-white/10 rounded-2xl p-4 space-y-2">
+          <div className="bg-canvas ring-1 ring-white/10 rounded-2xl p-4 space-y-2">
             <div className="flex flex-wrap items-center justify-between gap-2 text-xs">
               <span className="font-bold text-cyan-300">
-                AI地下埋設物・ガス管推論レポート（{previewSubsurface.landTitle}）
+                地下埋設物の推定結果（{previewSubsurface.landTitle}）
               </span>
               <span className="font-mono text-xs text-amber-300 font-bold">
                 試掘・撤去・引込概算: 約{previewSubsurface.aiSummary.estimatedSubsurfaceCostManYen}万円
@@ -529,7 +533,7 @@ export default function Wizard({ onOpenStudio, onBackToWelcome, initialLand }: W
                         {typeId === opt.id && <Check className="w-4 h-4 text-cyan-400 shrink-0" />}
                       </div>
                       <div className="text-xs text-slate-400 mt-1 leading-relaxed">{opt.description}</div>
-                      <div className="font-mono text-[10px] text-cyan-300/80 mt-2">
+                      <div className="font-mono text-xs text-cyan-300/80 mt-2">
                         標準 {opt.defaults.width}×{opt.defaults.depth}m ・ {opt.defaults.floors}F
                       </div>
                     </ChoiceButton>
@@ -558,11 +562,11 @@ export default function Wizard({ onOpenStudio, onBackToWelcome, initialLand }: W
                 <div className="font-mono text-sm font-bold text-white">
                   {p.w}×{p.d}m
                 </div>
-                <div className="text-[11px] text-slate-400">{p.note}</div>
+                <div className="text-xs text-slate-400">{p.note}</div>
               </ChoiceButton>
             ))}
           </div>
-          <div className="grid md:grid-cols-2 gap-4 bg-[#0B1222] ring-1 ring-white/10 rounded-2xl p-4">
+          <div className="grid md:grid-cols-2 gap-4 bg-surface ring-1 ring-white/10 rounded-2xl p-4">
             {[
               { label: '間口（東西）', value: width, set: setWidth },
               { label: '奥行（南北）', value: depth, set: setDepth }
@@ -609,7 +613,7 @@ export default function Wizard({ onOpenStudio, onBackToWelcome, initialLand }: W
                   className="py-3.5 text-center"
                 >
                   <div className="font-mono text-base font-bold text-white text-center">{f}F</div>
-                  <div className="text-[11px] text-slate-400 text-center">{f === 1 ? '平屋' : `${f}階建て`}</div>
+                  <div className="text-xs text-slate-400 text-center">{f === 1 ? '平屋' : `${f}階建て`}</div>
                 </ChoiceButton>
               ))}
             </div>
@@ -633,10 +637,10 @@ export default function Wizard({ onOpenStudio, onBackToWelcome, initialLand }: W
                     }}
                     className={`py-3 rounded-2xl ring-1 text-sm font-semibold transition ${
                       disabled
-                        ? 'bg-[#0B1222]/40 ring-white/5 text-slate-600 cursor-not-allowed'
+                        ? 'bg-surface/40 ring-white/5 text-slate-600 cursor-not-allowed'
                         : orientation === o.id
                         ? 'bg-cyan-400/15 ring-cyan-400 text-white cursor-pointer'
-                        : 'bg-[#0B1222] ring-white/10 text-slate-300 hover:bg-[#111C33] cursor-pointer'
+                        : 'bg-surface ring-white/10 text-slate-300 hover:bg-raised cursor-pointer'
                     }`}
                   >
                     {o.label}
@@ -648,7 +652,8 @@ export default function Wizard({ onOpenStudio, onBackToWelcome, initialLand }: W
         </section>
 
         {/* 生成ボタン */}
-        <section className="flex flex-wrap items-center justify-between gap-4 bg-[#0B1222] ring-1 ring-white/15 rounded-2xl px-5 py-4 animate-fade-up-delay-1">
+        {/* 長いページでもすぐ押せるよう画面下に固定 */}
+        <section className="sticky bottom-3 z-20 flex flex-wrap items-center justify-between gap-4 bg-surface ring-1 ring-white/15 rounded-2xl px-5 py-4 shadow-2xl">
           <div>
             <div className="text-xs text-slate-400">選択中の設計条件</div>
             <div className="text-sm font-semibold text-white mt-0.5">{summaryText}</div>
@@ -656,7 +661,7 @@ export default function Wizard({ onOpenStudio, onBackToWelcome, initialLand }: W
           <button
             onClick={handleGenerate}
             disabled={isLoading}
-            className="h-12 flex items-center gap-2 px-6 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-[#070B14] text-sm font-bold transition disabled:opacity-50 shadow-lg shadow-cyan-500/20 cursor-pointer"
+            className="h-12 flex items-center gap-2 px-6 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-on-accent text-sm font-bold transition disabled:opacity-50 shadow-lg cursor-pointer"
           >
             <Compass className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
             {isLoading ? '3つのプランを計算中...' : '埋設整合済みの3プランを作成する'}
@@ -686,7 +691,7 @@ export default function Wizard({ onOpenStudio, onBackToWelcome, initialLand }: W
               {variants.map((v) => (
                 <div
                   key={v.label}
-                  className="bg-[#0B1222] ring-1 ring-white/15 rounded-2xl overflow-hidden flex flex-col hover:ring-cyan-400/60 transition"
+                  className="bg-surface ring-1 ring-white/15 rounded-2xl overflow-hidden flex flex-col hover:ring-cyan-400/60 transition"
                 >
                   <div className="px-4 py-3 border-b border-white/10 flex items-center justify-between">
                     <div>
@@ -694,11 +699,11 @@ export default function Wizard({ onOpenStudio, onBackToWelcome, initialLand }: W
                       <span className="text-sm font-bold text-white">{v.title}</span>
                     </div>
                     {v.validation.isValid ? (
-                      <span className="flex items-center gap-1 text-[11px] text-emerald-400 font-semibold">
+                      <span className="flex items-center gap-1 text-xs text-emerald-400 font-semibold">
                         <Check className="w-3.5 h-3.5" /> 埋設整合OK
                       </span>
                     ) : (
-                      <span className="flex items-center gap-1 text-[11px] text-amber-400 font-semibold">
+                      <span className="flex items-center gap-1 text-xs text-amber-400 font-semibold">
                         <AlertCircle className="w-3.5 h-3.5" /> 要確認
                       </span>
                     )}
@@ -715,15 +720,15 @@ export default function Wizard({ onOpenStudio, onBackToWelcome, initialLand }: W
                   />
                   <div className="grid grid-cols-3 border-t border-white/10 text-center">
                     <div className="py-2.5">
-                      <div className="text-[10px] text-slate-400">延床面積</div>
+                      <div className="text-xs text-slate-400">延床面積</div>
                       <div className="font-mono text-sm font-bold text-white">{v.summary.totalArea}㎡</div>
                     </div>
                     <div className="py-2.5 border-x border-white/10">
-                      <div className="text-[10px] text-slate-400">部屋数</div>
+                      <div className="text-xs text-slate-400">部屋数</div>
                       <div className="font-mono text-sm font-bold text-white">{v.summary.roomCount}</div>
                     </div>
                     <div className="py-2.5">
-                      <div className="text-[10px] text-slate-400">水回り</div>
+                      <div className="text-xs text-slate-400">水回り</div>
                       <div className="font-mono text-sm font-bold text-white">{v.summary.wetCount}</div>
                     </div>
                   </div>
@@ -736,7 +741,7 @@ export default function Wizard({ onOpenStudio, onBackToWelcome, initialLand }: W
                         context: initialLand?.context
                       })
                     }
-                    className="m-3 mt-auto h-11 flex items-center justify-center gap-2 px-4 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-[#070B14] text-xs font-bold transition cursor-pointer"
+                    className="m-3 mt-auto h-11 flex items-center justify-center gap-2 px-4 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-on-accent text-xs font-bold transition cursor-pointer"
                   >
                     この案で3D・CADスタジオを開く
                     <ArrowRight className="w-4 h-4" />

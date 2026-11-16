@@ -1,3 +1,4 @@
+import ThemeToggle from './ThemeToggle';
 import { useState, useEffect, useRef, useMemo } from 'react';
 import * as THREE from 'three';
 import {
@@ -1718,7 +1719,7 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
 
     const scene = new THREE.Scene();
     // 地下埋設管・土壌地層・X線モデルが鮮明に映えるダークエンジニアリング背景
-    scene.background = new THREE.Color('#0B1222');
+    scene.background = new THREE.Color('#1C1C1C');
     sceneRef.current = scene;
 
     const camera = new THREE.PerspectiveCamera(38, width / height, 0.1, 1000);
@@ -2396,14 +2397,14 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
   };
 
   return (
-    <div className="flex flex-col h-screen w-screen bg-[#070B14] text-slate-100 overflow-hidden select-none antialiased">
+    <div className="flex flex-col h-screen w-screen bg-canvas text-slate-100 overflow-hidden select-none antialiased">
       {/* ==================== トップバー（ダークGIS・タブレット対応ヘッダー） ==================== */}
-      <header className="flex flex-wrap items-center justify-between gap-3 px-4 py-2.5 bg-[#070B14] border-b border-white/10 z-20">
+      <header className="flex flex-wrap items-center justify-between gap-3 px-4 py-2.5 bg-canvas border-b border-white/10 z-20">
         <div className="flex items-center gap-3">
           {onBack && (
             <button
               onClick={onBack}
-              className="flex items-center gap-1.5 h-10 px-3 rounded-xl text-xs font-semibold ring-1 ring-white/15 bg-[#0B1222] text-slate-200 hover:bg-[#111C33] transition cursor-pointer"
+              className="flex items-center gap-1.5 h-10 px-3 rounded-xl text-xs font-semibold ring-1 ring-white/15 bg-surface text-slate-200 hover:bg-raised transition cursor-pointer"
             >
               <ArrowLeft className="w-4 h-4 text-cyan-400" />
               マップへ戻る
@@ -2415,14 +2416,11 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
           <div>
             <div className="flex items-center gap-2">
               <h1 className="text-sm sm:text-base font-bold tracking-tight text-white">
-                STRATUM GEO-BIM STUDIO
+                設計スタジオ
               </h1>
-              <span className="hidden lg:inline-block px-2 py-0.5 text-[10px] font-mono font-semibold bg-cyan-400/15 text-cyan-300 ring-1 ring-cyan-400/30 rounded-md">
-                SUBSURFACE X-RAY &amp; CAD
-              </span>
             </div>
-            <p className="text-[11px] text-slate-400 hidden sm:block">
-              土地・地下埋設ガス管推論 × 新築2D/3D設計統合スタジオ
+            <p className="text-xs text-slate-400 hidden xl:block">
+              地下埋設物の推定と新築の2D/3D設計
             </p>
           </div>
         </div>
@@ -2435,16 +2433,16 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
               value={customPrompt}
               onChange={(e) => setCustomPrompt(e.target.value)}
               placeholder="設計したい建物の敷地・階層・用途を入力..."
-              className="w-full h-10 bg-[#0B1222] ring-1 ring-white/15 focus:ring-cyan-400 rounded-xl px-3 text-xs text-white placeholder-slate-500 outline-none transition"
+              className="w-full h-10 bg-surface ring-1 ring-white/15 focus:ring-cyan-400 rounded-xl px-3 text-xs text-white placeholder-slate-500 outline-none transition"
             />
           </div>
           <button
             onClick={handleSimulateAiGeneration}
             disabled={isGenerating}
-            className="h-10 flex items-center gap-1.5 px-3.5 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-[#070B14] font-bold text-xs transition disabled:opacity-50 cursor-pointer shrink-0"
+            className="h-10 flex items-center gap-1.5 px-3.5 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-on-accent font-bold text-xs transition disabled:opacity-50 cursor-pointer shrink-0"
           >
             <RefreshCw className={`w-3.5 h-3.5 ${isGenerating ? 'animate-spin' : ''}`} />
-            {isGenerating ? '計算中...' : 'AI再構成'}
+            {isGenerating ? '計算中...' : '再生成'}
           </button>
         </div>
 
@@ -2453,13 +2451,13 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
           <select
             value={scenarioKey}
             onChange={(e) => handleSelectScenario(e.target.value as ScenarioKey)}
-            className="h-10 bg-[#0B1222] ring-1 ring-white/15 text-slate-200 text-xs rounded-xl px-2.5 outline-none cursor-pointer hover:bg-[#111C33] transition"
+            className="h-10 bg-surface ring-1 ring-white/15 text-slate-200 text-xs rounded-xl px-2.5 outline-none cursor-pointer hover:bg-raised transition"
           >
-            <optgroup label="一般住宅（戸建て・マイホーム）" className="bg-[#0B1222]">
+            <optgroup label="一般住宅（戸建て・マイホーム）" className="bg-surface">
               <option value="family_house_4ldk">10×9.5m 木造2F 4LDK戸建て住宅</option>
               <option value="garage_house_3f">10×10m 3F ガレージ＆中庭住宅</option>
             </optgroup>
-            <optgroup label="オフィス・商業・研究複合建築" className="bg-[#0B1222]">
+            <optgroup label="オフィス・商業・研究複合建築" className="bg-surface">
               <option value="cafe_office">12×10m カフェ＆オフィスビル</option>
               <option value="clinic_residence">14×10m クリニック＆レジデンス</option>
               <option value="research_lab">12×12m バイオ研究ラボ棟</option>
@@ -2470,8 +2468,8 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
             onClick={() => setIsAutoTour(!isAutoTour)}
             className={`h-10 flex items-center gap-1.5 px-3 rounded-xl text-xs font-semibold ring-1 transition cursor-pointer ${
               isAutoTour
-                ? 'bg-cyan-400 ring-cyan-300 text-[#070B14]'
-                : 'bg-[#0B1222] ring-white/15 text-slate-200 hover:bg-[#111C33]'
+                ? 'bg-cyan-400 ring-cyan-300 text-on-accent'
+                : 'bg-surface ring-white/15 text-slate-200 hover:bg-raised'
             }`}
           >
             {isAutoTour ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5 text-cyan-400" />}
@@ -2484,7 +2482,7 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
             className={`h-10 hidden sm:flex items-center gap-1.5 px-3 rounded-xl text-xs font-semibold ring-1 transition cursor-pointer ${
               isRecording
                 ? 'bg-red-500/20 ring-red-400 text-red-200'
-                : 'bg-[#0B1222] ring-white/15 text-slate-200 hover:bg-[#111C33]'
+                : 'bg-surface ring-white/15 text-slate-200 hover:bg-raised'
             }`}
           >
             <Video className={`w-3.5 h-3.5 ${isRecording ? 'text-red-400 animate-pulse' : 'text-emerald-400'}`} />
@@ -2493,7 +2491,7 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
 
           <button
             onClick={() => setShowSvgModal(true)}
-            className="h-10 flex items-center gap-1.5 px-3 rounded-xl text-xs font-semibold ring-1 bg-[#0B1222] ring-white/15 text-slate-200 hover:bg-[#111C33] transition cursor-pointer"
+            className="h-10 flex items-center gap-1.5 px-3 rounded-xl text-xs font-semibold ring-1 bg-surface ring-white/15 text-slate-200 hover:bg-raised transition cursor-pointer"
           >
             <FileText className="w-3.5 h-3.5 text-cyan-400" />
             <span className="hidden sm:inline">SVG出力</span>
@@ -2503,44 +2501,46 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
             onClick={() => setShowJsonDrawer(!showJsonDrawer)}
             className={`h-10 hidden lg:flex items-center gap-1.5 px-3 rounded-xl text-xs font-semibold ring-1 transition cursor-pointer ${
               showJsonDrawer
-                ? 'bg-cyan-400 ring-cyan-300 text-[#070B14]'
-                : 'bg-[#0B1222] ring-white/15 text-slate-200 hover:bg-[#111C33]'
+                ? 'bg-cyan-400 ring-cyan-300 text-on-accent'
+                : 'bg-surface ring-white/15 text-slate-200 hover:bg-raised'
             }`}
           >
             <Code className="w-3.5 h-3.5" />
             JSON
           </button>
+
+          <ThemeToggle className="h-10 w-10 shrink-0 rounded-xl flex items-center justify-center ring-1 bg-surface ring-white/15 text-slate-200 hover:bg-raised transition cursor-pointer" />
         </div>
       </header>
 
       {/* ==================== メインワークスペース ==================== */}
       <div className="flex-1 flex overflow-hidden relative">
         {/* 左サイドパネル：地下埋設AI推論＆レイヤー制御 */}
-        <aside className="w-76 lg:w-80 hidden md:flex bg-[#0B1222] border-r border-white/10 flex-col justify-between p-4 overflow-y-auto z-10">
+        <aside className="w-76 lg:w-80 hidden md:flex bg-surface border-r border-white/10 flex-col justify-between p-4 overflow-y-auto z-10">
           <div className="space-y-4">
             {/* 1. 土地・過去建物履歴・周辺環境からの地下埋設AI推論パネル */}
-            <div className="bg-[#070B14] ring-1 ring-cyan-400/40 rounded-2xl p-3.5 space-y-3">
+            <div className="bg-canvas ring-1 ring-cyan-400/40 rounded-2xl p-3.5 space-y-3">
               <div className="flex items-center justify-between border-b border-white/10 pb-2">
                 <span className="text-xs font-bold text-white flex items-center gap-1.5">
                   <Sliders className="w-3.5 h-3.5 text-cyan-400" />
-                  土地・旧建物からの地下埋設AI推論
+                  地下埋設物の推定
                 </span>
-                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-cyan-400/15 text-cyan-300 font-bold">
+                <span className="text-xs font-mono px-1.5 py-0.5 rounded bg-cyan-400/15 text-cyan-300 font-bold">
                   GL 0〜-9.0m
                 </span>
               </div>
 
               <div className="space-y-1">
-                <label className="text-[11px] font-medium text-slate-300">
+                <label className="text-xs font-medium text-slate-300">
                   ① 前回建っていた建物履歴
                 </label>
                 <select
                   value={prevBuildingType}
                   onChange={(e) => setPrevBuildingType(e.target.value as PreviousBuildingType)}
-                  className="w-full h-9 bg-[#0B1222] ring-1 ring-white/15 rounded-lg px-2 text-xs text-white cursor-pointer"
+                  className="w-full h-9 bg-surface ring-1 ring-white/15 rounded-lg px-2 text-xs text-white cursor-pointer"
                 >
                   {PREVIOUS_BUILDING_OPTIONS.map((opt) => (
-                    <option key={opt.id} value={opt.id} className="bg-[#0B1222]">
+                    <option key={opt.id} value={opt.id} className="bg-surface">
                       {opt.title}
                     </option>
                   ))}
@@ -2548,16 +2548,16 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
               </div>
 
               <div className="space-y-1">
-                <label className="text-[11px] font-medium text-slate-300">
+                <label className="text-xs font-medium text-slate-300">
                   ② 前面道路・ガス/上下水本管位置
                 </label>
                 <select
                   value={frontRoadDir}
                   onChange={(e) => setFrontRoadDir(e.target.value as FrontRoadDirection)}
-                  className="w-full h-9 bg-[#0B1222] ring-1 ring-white/15 rounded-lg px-2 text-xs text-white cursor-pointer"
+                  className="w-full h-9 bg-surface ring-1 ring-white/15 rounded-lg px-2 text-xs text-white cursor-pointer"
                 >
                   {FRONT_ROAD_OPTIONS.map((opt) => (
-                    <option key={opt.id} value={opt.id} className="bg-[#0B1222]">
+                    <option key={opt.id} value={opt.id} className="bg-surface">
                       {opt.label}
                     </option>
                   ))}
@@ -2565,16 +2565,16 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
               </div>
 
               <div className="space-y-1">
-                <label className="text-[11px] font-medium text-slate-300">
+                <label className="text-xs font-medium text-slate-300">
                   ③ 周囲の建物・隣地越境環境
                 </label>
                 <select
                   value={surroundingType}
                   onChange={(e) => setSurroundingType(e.target.value as SurroundingContextType)}
-                  className="w-full h-9 bg-[#0B1222] ring-1 ring-white/15 rounded-lg px-2 text-xs text-white cursor-pointer"
+                  className="w-full h-9 bg-surface ring-1 ring-white/15 rounded-lg px-2 text-xs text-white cursor-pointer"
                 >
                   {SURROUNDING_OPTIONS.map((opt) => (
-                    <option key={opt.id} value={opt.id} className="bg-[#0B1222]">
+                    <option key={opt.id} value={opt.id} className="bg-surface">
                       {opt.label}
                     </option>
                   ))}
@@ -2582,7 +2582,7 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
               </div>
 
               <div className="space-y-1 pt-1 border-t border-white/10">
-                <div className="flex justify-between text-[11px]">
+                <div className="flex justify-between text-xs">
                   <span className="text-slate-300">④ 地上建物のX線透過度</span>
                   <span className="font-mono text-cyan-300 font-bold">
                     {superstructureOpacity <= 0.02
@@ -2604,7 +2604,7 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
               <div className="grid grid-cols-2 gap-1.5 pt-1">
                 <button
                   onClick={() => setStudioViewMode('SUBSURFACE_CAD')}
-                  className="py-2 text-[11px] bg-cyan-400 hover:bg-cyan-300 text-[#070B14] font-bold rounded-lg transition cursor-pointer"
+                  className="py-2 text-xs bg-cyan-400 hover:bg-cyan-300 text-on-accent font-bold rounded-lg transition cursor-pointer"
                 >
                   2D 埋設推論伏図
                 </button>
@@ -2614,7 +2614,7 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
                     setShowUnderground3D(true);
                     setSuperstructureOpacity(0.15);
                   }}
-                  className="py-2 text-[11px] bg-white/10 hover:bg-white/15 text-white font-semibold rounded-lg transition cursor-pointer"
+                  className="py-2 text-xs bg-white/10 hover:bg-white/15 text-white font-semibold rounded-lg transition cursor-pointer"
                 >
                   3D 地下埋設X線
                 </button>
@@ -2631,15 +2631,15 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
                 onClick={() => toggleLayer('infill')}
                 className={`w-full flex items-center justify-between p-2.5 rounded-xl ring-1 text-left transition cursor-pointer ${
                   visibleLayers.infill
-                    ? 'bg-[#070B14] ring-white/20 text-white'
-                    : 'bg-[#070B14]/40 ring-white/5 text-slate-500'
+                    ? 'bg-canvas ring-white/20 text-white'
+                    : 'bg-canvas/40 ring-white/5 text-slate-500'
                 }`}
               >
                 <div className="flex items-center gap-2.5">
                   <span className="w-2.5 h-2.5 rounded-sm bg-amber-400 shrink-0" />
                   <div>
                     <div className="text-xs font-semibold">意匠・間取り (Infill)</div>
-                    <div className="text-[10px] text-slate-400">部屋ゾーニング・間仕切り壁</div>
+                    <div className="text-xs text-slate-400">部屋ゾーニング・間仕切り壁</div>
                   </div>
                 </div>
                 {visibleLayers.infill ? <Eye className="w-3.5 h-3.5 text-cyan-400" /> : <EyeOff className="w-3.5 h-3.5" />}
@@ -2649,15 +2649,15 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
                 onClick={() => toggleLayer('mep')}
                 className={`w-full flex items-center justify-between p-2.5 rounded-xl ring-1 text-left transition cursor-pointer ${
                   visibleLayers.mep
-                    ? 'bg-[#070B14] ring-white/20 text-white'
-                    : 'bg-[#070B14]/40 ring-white/5 text-slate-500'
+                    ? 'bg-canvas ring-white/20 text-white'
+                    : 'bg-canvas/40 ring-white/5 text-slate-500'
                 }`}
               >
                 <div className="flex items-center gap-2.5">
                   <span className="w-2.5 h-2.5 rounded-sm bg-cyan-400 shrink-0" />
                   <div>
                     <div className="text-xs font-semibold">設備配管 (MEP)</div>
-                    <div className="text-[10px] text-slate-400">給排水縦シャフト(PS)・ダクト</div>
+                    <div className="text-xs text-slate-400">給排水縦シャフト(PS)・ダクト</div>
                   </div>
                 </div>
                 {visibleLayers.mep ? <Eye className="w-3.5 h-3.5 text-cyan-400" /> : <EyeOff className="w-3.5 h-3.5" />}
@@ -2667,15 +2667,15 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
                 onClick={() => toggleLayer('skeleton')}
                 className={`w-full flex items-center justify-between p-2.5 rounded-xl ring-1 text-left transition cursor-pointer ${
                   visibleLayers.skeleton
-                    ? 'bg-[#070B14] ring-white/20 text-white'
-                    : 'bg-[#070B14]/40 ring-white/5 text-slate-500'
+                    ? 'bg-canvas ring-white/20 text-white'
+                    : 'bg-canvas/40 ring-white/5 text-slate-500'
                 }`}
               >
                 <div className="flex items-center gap-2.5">
                   <span className="w-2.5 h-2.5 rounded-sm bg-slate-400 shrink-0" />
                   <div>
                     <div className="text-xs font-semibold">構造スケルトン (Skeleton)</div>
-                    <div className="text-[10px] text-slate-400">床スラブ・通し柱・耐力壁</div>
+                    <div className="text-xs text-slate-400">床スラブ・通し柱・耐力壁</div>
                   </div>
                 </div>
                 {visibleLayers.skeleton ? <Eye className="w-3.5 h-3.5 text-cyan-400" /> : <EyeOff className="w-3.5 h-3.5" />}
@@ -2694,8 +2694,8 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
                     onClick={() => setActiveFloorFilter(fl)}
                     className={`py-2 rounded-lg text-xs font-bold ring-1 transition cursor-pointer ${
                       activeFloorFilter === fl
-                        ? 'bg-cyan-400 ring-cyan-300 text-[#070B14]'
-                        : 'bg-[#070B14] ring-white/10 text-slate-300 hover:bg-white/5'
+                        ? 'bg-cyan-400 ring-cyan-300 text-on-accent'
+                        : 'bg-canvas ring-white/10 text-slate-300 hover:bg-white/5'
                     }`}
                   >
                     {fl === 'ALL' ? '全階' : `${fl}F`}
@@ -2705,19 +2705,19 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
             </div>
 
             {/* 4. 垂直断面(Z軸)・構造グリッドの精密制御 */}
-            <div className="bg-[#070B14] ring-1 ring-white/10 rounded-2xl p-3.5 space-y-2.5">
+            <div className="bg-canvas ring-1 ring-white/10 rounded-2xl p-3.5 space-y-2.5">
               <div className="flex items-center justify-between border-b border-white/10 pb-1.5">
                 <span className="text-xs font-bold text-slate-200">
                   構造グリッド・断面寸法
                 </span>
-                <span className="font-mono text-[10px] text-cyan-300">
+                <span className="font-mono text-xs text-cyan-300">
                   スパン {buildingData.site.structuralModule?.spanX ?? 4.5}×
                   {buildingData.site.structuralModule?.spanZ ?? 4.5}m
                 </span>
               </div>
 
               <div className="space-y-1">
-                <div className="flex justify-between text-[11px]">
+                <div className="flex justify-between text-xs">
                   <span className="text-slate-400">階高 (Floor Height)</span>
                   <span className="font-mono text-white">{buildingData.site.floorHeight.toFixed(2)} m</span>
                 </div>
@@ -2733,7 +2733,7 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
               </div>
 
               <div className="space-y-1">
-                <div className="flex justify-between text-[11px]">
+                <div className="flex justify-between text-xs">
                   <span className="text-slate-400">柱断面寸法 (Column)</span>
                   <span className="font-mono text-white">
                     {Math.round((buildingData.columns[0]?.width ?? 0.45) * 1000)} mm角
@@ -2756,7 +2756,7 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
           <div
             className={`p-3.5 rounded-2xl ring-1 mt-4 ${
               diagnostics.isValid
-                ? 'bg-[#070B14] ring-emerald-400/30'
+                ? 'bg-canvas ring-emerald-400/30'
                 : 'bg-red-950/40 ring-red-400/50'
             }`}
           >
@@ -2773,11 +2773,11 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
               </span>
             </div>
             {diagnostics.isValid ? (
-              <p className="text-[11px] text-slate-400 leading-relaxed">
+              <p className="text-xs text-slate-400 leading-relaxed">
                 通し柱（{buildingData.columns.length}本）と給排水縦シャフト(PS)の座標が整合しています。
               </p>
             ) : (
-              <ul className="text-[11px] text-red-300 space-y-1 list-disc pl-4 leading-relaxed">
+              <ul className="text-xs text-red-300 space-y-1 list-disc pl-4 leading-relaxed">
                 {diagnostics.warnings.map((w, idx) => (
                   <li key={idx}>{w}</li>
                 ))}
@@ -2787,19 +2787,19 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
             <div className="mt-3 pt-2.5 border-t border-white/10 grid grid-cols-2 gap-1.5">
               <button
                 onClick={handleInjectViolationDemo}
-                className="px-2 py-1.5 text-[11px] bg-white/5 hover:bg-red-500/20 text-red-300 rounded-lg ring-1 ring-red-400/30 transition cursor-pointer font-medium"
+                className="px-2 py-1.5 text-xs bg-white/5 hover:bg-red-500/20 text-red-300 rounded-lg ring-1 ring-red-400/30 transition cursor-pointer font-medium"
               >
                 ① 不整合デモ
               </button>
               <button
                 onClick={handleRunSelfRepairDemo}
-                className="px-2 py-1.5 text-[11px] bg-cyan-400 hover:bg-cyan-300 text-[#070B14] rounded-lg transition cursor-pointer font-bold"
+                className="px-2 py-1.5 text-xs bg-cyan-400 hover:bg-cyan-300 text-on-accent rounded-lg transition cursor-pointer font-bold"
               >
                 ② 自動補正
               </button>
             </div>
             {repairLogs.length > 0 && (
-              <div className="bg-[#070B14] ring-1 ring-emerald-400/30 rounded-lg p-2 mt-2 text-[10px] text-emerald-300 space-y-0.5">
+              <div className="bg-canvas ring-1 ring-emerald-400/30 rounded-lg p-2 mt-2 text-xs text-emerald-300 space-y-0.5">
                 {repairLogs.map((log, i) => (
                   <div key={i}>・{log}</div>
                 ))}
@@ -2809,7 +2809,7 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
         </aside>
 
         {/* ==================== 中央：地下埋設CAD & 3D地下X線 & 2D建築設計図ビューポート ==================== */}
-        <main className="flex-1 relative bg-[#0B1222] flex flex-col overflow-hidden">
+        <main className="flex-1 relative bg-surface flex flex-col overflow-hidden">
           <div
             ref={mountRef}
             className={`w-full h-full cursor-grab active:cursor-grabbing ${
@@ -2819,7 +2819,7 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
 
           {/* 地下埋設インフラ・旧建物履歴AI推論CADモード (メイン) */}
           {studioViewMode === 'SUBSURFACE_CAD' && (
-            <div className="relative z-10 w-full h-full pt-14 pb-16 bg-[#070B14]">
+            <div className="relative z-10 w-full h-full pt-14 pb-16 bg-canvas">
               <SubsurfaceAnalyzerView
                 blueprint={buildingScenarioToStratumSchema(buildingData)}
                 prevType={prevBuildingType}
@@ -2859,9 +2859,9 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
           {/* 上部オーバーレイ：タブレット対応 大型モード切替タブ */}
           <div className="absolute top-3 left-3 right-3 flex flex-wrap items-center justify-between gap-2 pointer-events-none z-20">
             <div className="flex flex-wrap items-center gap-2 pointer-events-auto">
-              <div className="bg-[#070B14]/95 backdrop-blur-md ring-1 ring-white/15 rounded-2xl p-1 flex items-center gap-1 shadow-xl">
+              <div className="bg-canvas/95 backdrop-blur-md ring-1 ring-white/15 rounded-2xl p-1 flex items-center gap-1 shadow-xl">
                 {[
-                  { id: 'SUBSURFACE_CAD' as const, label: '① 地下埋設・ガス管AI推論図' },
+                  { id: 'SUBSURFACE_CAD' as const, label: '① 地下埋設図' },
                   { id: '3D_BIM' as const, label: '② 3D 地下埋設X線・透視' },
                   { id: '2D_CAD' as const, label: '③ 2D 新築設計図・間取り図' },
                   { id: 'AXON_STACK' as const, label: '④ 階層ゾーニング図' }
@@ -2871,7 +2871,7 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
                     onClick={() => setStudioViewMode(m.id)}
                     className={`px-3 py-1.5 rounded-xl text-xs font-bold transition cursor-pointer ${
                       studioViewMode === m.id
-                        ? 'bg-cyan-400 text-[#070B14] shadow'
+                        ? 'bg-cyan-400 text-on-accent shadow'
                         : 'text-slate-300 hover:bg-white/10'
                     }`}
                   >
@@ -2881,7 +2881,7 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
               </div>
 
               {studioViewMode === '3D_BIM' && (
-                <div className="bg-[#070B14]/95 backdrop-blur-md ring-1 ring-white/15 rounded-2xl p-1 flex items-center gap-1 shadow-xl">
+                <div className="bg-canvas/95 backdrop-blur-md ring-1 ring-white/15 rounded-2xl p-1 flex items-center gap-1 shadow-xl">
                   {[
                     { id: 'ISO' as const, label: '鳥瞰アイソメ' },
                     { id: 'TOP' as const, label: '平面 (Top)' },
@@ -2904,8 +2904,8 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
             </div>
 
             {isAutoTour && (
-              <div className="bg-[#070B14]/95 text-cyan-200 ring-1 ring-cyan-400/50 rounded-2xl px-4 py-2 text-xs font-mono flex items-center gap-2 pointer-events-auto shadow-xl animate-fade-in">
-                <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
+              <div className="bg-canvas/95 text-cyan-200 ring-1 ring-cyan-400/50 rounded-2xl px-4 py-2 text-xs font-mono flex items-center gap-2 pointer-events-auto shadow-xl animate-fade-in">
+                <span className="w-2 h-2 rounded-full bg-cyan-400" />
                 {tourCaption}
               </div>
             )}
@@ -2913,30 +2913,30 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
 
           {/* 下部オーバーレイ：建築諸元・面積・概算コスト */}
           <div className="absolute bottom-3 left-3 right-3 flex flex-wrap items-center justify-between gap-3 pointer-events-none z-20">
-            <div className="bg-[#070B14]/95 backdrop-blur-md ring-1 ring-white/15 rounded-2xl px-4 py-2.5 flex items-center gap-5 pointer-events-auto shadow-xl">
+            <div className="bg-canvas/95 backdrop-blur-md ring-1 ring-white/15 rounded-2xl px-4 py-2.5 flex items-center gap-5 pointer-events-auto shadow-xl">
               <div>
-                <div className="text-[10px] text-slate-400">敷地寸法</div>
+                <div className="text-xs text-slate-400">敷地寸法</div>
                 <div className="text-xs font-mono font-bold text-white">
                   {buildingData.site.width}m × {buildingData.site.depth}m
                 </div>
               </div>
               <div className="h-6 w-px bg-white/10" />
               <div>
-                <div className="text-[10px] text-slate-400">延床面積</div>
+                <div className="text-xs text-slate-400">延床面積</div>
                 <div className="text-xs font-mono font-bold text-white">
                   {diagnostics.totalArea} ㎡
                 </div>
               </div>
               <div className="h-6 w-px bg-white/10" />
               <div>
-                <div className="text-[10px] text-slate-400">概算建築工事費</div>
+                <div className="text-xs text-slate-400">概算建築工事費</div>
                 <div className="text-xs font-mono font-bold text-cyan-300">
                   ¥{diagnostics.estimatedCost}万
                 </div>
               </div>
             </div>
 
-            <div className="bg-[#070B14]/95 backdrop-blur-md ring-1 ring-white/15 rounded-2xl px-3.5 py-2 hidden sm:flex items-center gap-4 text-[11px] text-slate-300 pointer-events-auto shadow-xl">
+            <div className="bg-canvas/95 backdrop-blur-md ring-1 ring-white/15 rounded-2xl px-3.5 py-2 hidden sm:flex items-center gap-4 text-xs text-slate-300 pointer-events-auto shadow-xl">
               <span className="flex items-center gap-1.5">
                 <span className="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block" />
                 都市ガス埋設管
@@ -2954,7 +2954,7 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
         </main>
 
         {/* ==================== 右サイドパネル：座標・寸法インスペクター ==================== */}
-        <aside className="w-76 lg:w-80 hidden xl:flex bg-[#0B1222] border-l border-white/10 p-4 flex-col justify-between overflow-y-auto z-10">
+        <aside className="w-76 lg:w-80 hidden xl:flex bg-surface border-l border-white/10 p-4 flex-col justify-between overflow-y-auto z-10">
           <div className="space-y-4">
             <div className="flex items-center justify-between border-b border-white/10 pb-2.5">
               <div className="flex items-center gap-2">
@@ -2967,12 +2967,12 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
 
             {activeRoomObj ? (
               <div className="space-y-3.5">
-                <div className="bg-[#070B14] ring-1 ring-white/10 rounded-2xl p-3">
+                <div className="bg-canvas ring-1 ring-white/10 rounded-2xl p-3">
                   <div className="flex items-center justify-between mb-1">
-                    <span className="text-[10px] font-semibold px-2 py-0.5 rounded bg-cyan-400/15 text-cyan-300">
+                    <span className="text-xs font-semibold px-2 py-0.5 rounded bg-cyan-400/15 text-cyan-300">
                       {selectedItem?.floorLevel}F フロア
                     </span>
-                    <span className="text-[11px] font-mono text-slate-400">
+                    <span className="text-xs font-mono text-slate-400">
                       {activeRoomObj.id}
                     </span>
                   </div>
@@ -2988,29 +2988,29 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-[11px] font-medium text-slate-300">
+                  <label className="text-xs font-medium text-slate-300">
                     部屋用途区分
                   </label>
                   <select
                     value={activeRoomObj.type}
                     onChange={(e) => updateSelectedRoom('type', e.target.value)}
-                    className="w-full h-9 bg-[#070B14] ring-1 ring-white/15 rounded-xl px-2.5 text-xs text-white outline-none cursor-pointer"
+                    className="w-full h-9 bg-canvas ring-1 ring-white/15 rounded-xl px-2.5 text-xs text-white outline-none cursor-pointer"
                   >
                     {ROOM_USAGE_OPTIONS.map((opt) => (
-                      <option key={opt.type} value={opt.type} className="bg-[#0B1222]">
+                      <option key={opt.type} value={opt.type} className="bg-surface">
                         {opt.label}
                       </option>
                     ))}
                   </select>
                 </div>
 
-                <div className="bg-[#070B14] ring-1 ring-white/10 rounded-2xl p-3.5 space-y-2.5">
+                <div className="bg-canvas ring-1 ring-white/10 rounded-2xl p-3.5 space-y-2.5">
                   <div className="text-xs font-bold text-slate-200">
                     ジオメトリ座標・寸法 (m)
                   </div>
 
                   <div className="space-y-1">
-                    <div className="flex justify-between text-[11px]">
+                    <div className="flex justify-between text-xs">
                       <span className="text-slate-400">間口幅 (W)</span>
                       <span className="font-mono text-white">{activeRoomObj.w.toFixed(1)} m</span>
                     </div>
@@ -3026,7 +3026,7 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
                   </div>
 
                   <div className="space-y-1">
-                    <div className="flex justify-between text-[11px]">
+                    <div className="flex justify-between text-xs">
                       <span className="text-slate-400">奥行 (D)</span>
                       <span className="font-mono text-white">{activeRoomObj.d.toFixed(1)} m</span>
                     </div>
@@ -3042,7 +3042,7 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
                   </div>
 
                   <div className="space-y-1">
-                    <div className="flex justify-between text-[11px]">
+                    <div className="flex justify-between text-xs">
                       <span className="text-slate-400">東西座標 (X)</span>
                       <span className="font-mono text-cyan-300">{activeRoomObj.x.toFixed(1)} m</span>
                     </div>
@@ -3058,7 +3058,7 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
                   </div>
 
                   <div className="space-y-1">
-                    <div className="flex justify-between text-[11px]">
+                    <div className="flex justify-between text-xs">
                       <span className="text-slate-400">南北座標 (Z)</span>
                       <span className="font-mono text-cyan-300">{activeRoomObj.z.toFixed(1)} m</span>
                     </div>
@@ -3075,15 +3075,15 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
                 </div>
 
                 {/* 床仕上材 */}
-                <div className="bg-[#070B14] ring-1 ring-white/10 rounded-2xl p-3.5 space-y-2">
-                  <label className="text-[11px] text-slate-400 block">床仕上材コード (finishes.floor)</label>
+                <div className="bg-canvas ring-1 ring-white/10 rounded-2xl p-3.5 space-y-2">
+                  <label className="text-xs text-slate-400 block">床仕上材コード (finishes.floor)</label>
                   <select
                     value={activeRoomObj.finishes?.floor ?? 'oak_flooring'}
                     onChange={(e) => updateSelectedRoomDetail('floorFinish', e.target.value)}
-                    className="w-full h-9 bg-[#0B1222] ring-1 ring-white/15 rounded-lg px-2 text-xs font-mono text-white outline-none cursor-pointer"
+                    className="w-full h-9 bg-surface ring-1 ring-white/15 rounded-lg px-2 text-xs font-mono text-white outline-none cursor-pointer"
                   >
                     {FINISH_MATERIAL_OPTIONS.map((fOpt) => (
-                      <option key={fOpt.code} value={fOpt.code} className="bg-[#0B1222]">
+                      <option key={fOpt.code} value={fOpt.code} className="bg-surface">
                         {fOpt.label}
                       </option>
                     ))}
@@ -3091,7 +3091,7 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
                 </div>
               </div>
             ) : (
-              <div className="text-xs text-slate-400 bg-[#070B14] p-3 rounded-xl ring-1 ring-white/10">
+              <div className="text-xs text-slate-400 bg-canvas p-3 rounded-xl ring-1 ring-white/10">
                 部屋を選択してください。
               </div>
             )}
@@ -3104,7 +3104,7 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
               <div className="space-y-2 max-h-56 overflow-y-auto pr-1">
                 {buildingData.floors.map((fl) => (
                   <div key={fl.level} className="space-y-1">
-                    <div className="text-[11px] font-medium text-slate-400">{fl.name}</div>
+                    <div className="text-xs font-medium text-slate-400">{fl.name}</div>
                     {fl.rooms.map((rm) => {
                       const isSel =
                         selectedItem?.floorLevel === fl.level && selectedItem?.id === rm.id;
@@ -3117,7 +3117,7 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
                           className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs ring-1 transition cursor-pointer ${
                             isSel
                               ? 'bg-cyan-400/15 ring-cyan-400 text-white font-semibold'
-                              : 'bg-[#070B14] ring-white/10 text-slate-300 hover:bg-white/5'
+                              : 'bg-canvas ring-white/10 text-slate-300 hover:bg-white/5'
                           }`}
                         >
                           <span className="flex items-center gap-2 truncate">
@@ -3127,7 +3127,7 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
                             />
                             <span className="truncate">{rm.name}</span>
                           </span>
-                          <span className="font-mono text-[10px] text-slate-400 shrink-0 ml-1">
+                          <span className="font-mono text-xs text-slate-400 shrink-0 ml-1">
                             {(rm.w * rm.d).toFixed(0)}㎡
                           </span>
                         </button>
@@ -3142,7 +3142,7 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
 
         {/* ==================== 3層統合BIM座標データ (JSON) インスペクター ==================== */}
         {showJsonDrawer && (
-          <div className="absolute inset-y-0 right-0 xl:right-80 w-96 bg-[#0B1222] border-l border-white/15 p-4 flex flex-col z-30 shadow-2xl">
+          <div className="absolute inset-y-0 right-0 xl:right-80 w-96 bg-surface border-l border-white/15 p-4 flex flex-col z-30 shadow-2xl">
             <div className="flex items-center justify-between pb-3 border-b border-white/10">
               <div>
                 <h3 className="text-xs font-bold text-white flex items-center gap-1.5">
@@ -3157,7 +3157,7 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
                 閉じる
               </button>
             </div>
-            <pre className="flex-1 overflow-auto text-[11px] font-mono text-cyan-100 bg-[#070B14] p-3 rounded-xl mt-3 ring-1 ring-white/10 leading-relaxed">
+            <pre className="flex-1 overflow-auto text-xs font-mono text-cyan-100 bg-canvas p-3 rounded-xl mt-3 ring-1 ring-white/10 leading-relaxed">
               {JSON.stringify(buildingScenarioToStratumSchema(buildingData), null, 2)}
             </pre>
           </div>
@@ -3166,20 +3166,20 @@ export default function App({ initialBlueprint, initialPrompt, autoStartDemo = f
         {/* ==================== 2D CAD (SVG) 建築設計図プレビューモーダル ==================== */}
         {showSvgModal && (
           <div className="absolute inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 z-30">
-            <div className="bg-[#0B1222] ring-1 ring-white/20 rounded-2xl w-full max-w-5xl max-h-[88vh] flex flex-col shadow-2xl overflow-hidden">
-              <div className="flex items-center justify-between px-5 py-3.5 border-b border-white/10 bg-[#070B14]">
+            <div className="bg-surface ring-1 ring-white/20 rounded-2xl w-full max-w-5xl max-h-[88vh] flex flex-col shadow-2xl overflow-hidden">
+              <div className="flex items-center justify-between px-5 py-3.5 border-b border-white/10 bg-canvas">
                 <div>
                   <h3 className="text-sm font-bold text-white">
                     2D マルチレイヤーCAD建築平面図 (SVG Export)
                   </h3>
-                  <p className="text-[11px] text-slate-400">
+                  <p className="text-xs text-slate-400">
                     壁芯密着・フローリング/タイルハッチング・住宅設備シンボル付き業務CAD図面
                   </p>
                 </div>
                 <div className="flex items-center gap-2">
                   <button
                     onClick={handleDownloadSvg}
-                    className="px-3.5 py-2 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-[#070B14] text-xs font-bold cursor-pointer transition"
+                    className="px-3.5 py-2 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-on-accent text-xs font-bold cursor-pointer transition"
                   >
                     SVG図面をダウンロード (.svg)
                   </button>
