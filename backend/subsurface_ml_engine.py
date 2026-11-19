@@ -13,8 +13,8 @@ Stratum Arch Studio - 地下埋設インフラ・地中障害物 機械学習 / 
 from __future__ import annotations
 
 import math
-from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional, Tuple
+from dataclasses import dataclass
+from typing import Any, Dict, List, Tuple
 
 
 @dataclass

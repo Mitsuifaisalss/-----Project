@@ -11,11 +11,7 @@
 
 ---
 
-<<<<<<< HEAD
 ##  1. 背景と解決する社会課題（Why STRATUM GEO-BIM?）
-=======
-##  1. 背景と解決する社会課題（Why STRATUM GEO-BIM?）
->>>>>>> 3af0a65ba76d488b6cb8fbe0723cac1a58acb38f
 
 建設・不動産・解体工事の現場には、**「地面の下（地下）に何が埋まっているか、重機で掘ってみるまで分からない」** という深刻なブラックボックス問題が存在します。
 
@@ -30,11 +26,7 @@
 
 ---
 
-<<<<<<< HEAD
 ##  2. 既存ソリューションとの決定的な差別化
-=======
-##  2. 既存ソリューションとの決定的な差別化
->>>>>>> 3af0a65ba76d488b6cb8fbe0723cac1a58acb38f
 
 | 比較軸 | 従来の「間取り生成AI」 | 物理探査（地中レーダー・試掘） | **STRATUM GEO-BIM（本プロダクト）** |
 | :--- | :--- | :--- | :--- |
@@ -45,15 +37,9 @@
 
 ---
 
-<<<<<<< HEAD
-##  3. 主要機能（Key Features）
-
-### ① 現場タブレット対応・GISランドスキャナー（`LandMapExplorer`）
-=======
 ##  3. 主要機能（Key Features）
 
 ### ① 現場タブレット対応・GISランドスキャナー（`LandMapExplorer.tsx`）
->>>>>>> 3af0a65ba76d488b6cb8fbe0723cac1a58acb38f
 - **リアルタイム空間データ収集**: マップ上の任意の土地をタップするだけで、OpenStreetMap（Overpass API）から対象敷地の多角形ポリゴン、周囲45m圏内の建物密度・階数、前面道路の方位・幅員、最寄り水路距離を自動計測。
 - **1974〜78年（昭和期）航空写真タイムマシン**: 国土地理院のシームレス航空写真と1970年代の過去航空写真をワンタップで切り替え、現在更地や駐車場になっている土地に「かつて何が建っていたか」を視覚的に照合。
 - **ハルシネーション排除の安全設計**: 更地（`vacant_lot`）やコインパーキング（`parking_lot`）をスキャンした際は、存在しない部屋の描画を抑制し、実測区画形状と地下残置インフラのみを正確に表示。
@@ -65,19 +51,11 @@
   - **隣地越境配管リスク確率（`crossBorderRiskProb`）**
   - **地中残置障害物（旧単独浄化槽・残置PHC杭群 GL-8.5m・旧地下タンク）** の存在確率と **概算撤去費用（万円）**
 
-<<<<<<< HEAD
-### ③ プロ実務仕様の2D CAD自動作図（`SubsurfaceInferenceEngine` / `ArchitecturalDrawings`）
-- **地下埋設調査CAD図（平面伏図＋GL深度垂直断面図）**: 多角形敷地境界線、各辺の実測寸法、道路本管、引込管、ガスメーター（GM）・水道メーター（WM）・最終ます、試掘推奨ポイントをJIS規格の線種・ハッチングで出力。
-- **建築1F/2F平面詳細図（間取り図）**: 柱グリッド、耐力壁、建具（ドア開閉アーク・窓サッシ）、住宅設備シンボル（システムキッチン・ユニットバス1616・トイレ・洗面）、畳数表記を含む業務レベルのSVG図面を生成・エクスポート。
-
-### ④ 3D地下X線透視＆3レイヤー建築BIMスタジオ（`ai_bim_3d`）
-=======
 ### ③ プロ実務仕様の2D CAD自動作図（`SubsurfaceInferenceEngine.tsx` / `ArchitecturalDrawings.tsx`）
 - **地下埋設調査CAD図（平面伏図＋GL深度垂直断面図）**: 多角形敷地境界線、各辺の実測寸法、道路本管、引込管、ガスメーター（GM）・水道メーター（WM）・最終ます、試掘推奨ポイントをJIS規格の線種・ハッチングで出力。
 - **建築1F/2F平面詳細図（間取り図）**: 柱グリッド、耐力壁、建具（ドア開閉アーク・窓サッシ）、住宅設備シンボル（システムキッチン・ユニットバス1616・トイレ・洗面）、畳数表記を含む業務レベルのSVG図面を生成・エクスポート。
 
 ### ④ 3D地下X線透視＆3レイヤー建築BIMスタジオ（`ai_bim_3d.tsx`）
->>>>>>> 3af0a65ba76d488b6cb8fbe0723cac1a58acb38f
 - **3D地下X線モード**: 地上建物を半透明化し、地下の地層（表土・ローム層・支持層）に埋まるガス管・水道管・残置杭と新築基礎のクリアランスをWebGL（Three.js）で立体透視。
 - **建築3レイヤー（Stratum）分解**:
   - **Layer 1: Skeleton（構造層）** — 通し柱・大梁・小梁・耐力壁・基礎スラブ
@@ -88,7 +66,6 @@
 
 ---
 
-<<<<<<< HEAD
 ##  4. システムアーキテクチャ
 
 ```mermaid
@@ -129,8 +106,8 @@ flowchart LR
 - **Node.js**: `v18.0` 以上（推奨 `v20`〜`v24`） / `npm`
 - **Python**: `3.10` 以上
 
-### フロントエンド使用ライブラリ（`project/package.json`）
-`cd project && npm install` で以下が自動インストールされます。
+### フロントエンド使用ライブラリ（`frontend/package.json`）
+`cd frontend && npm install` で以下が自動インストールされます。
 
 | パッケージ名 | バージョン | 用途・役割 |
 | :--- | :--- | :--- |
@@ -165,7 +142,7 @@ flowchart LR
 pip install -r requirements.txt
 
 # 2. フロントエンド用パッケージのインストール
-cd project
+cd frontend
 npm install
 cd ..
 ```
@@ -173,7 +150,7 @@ cd ..
 Linux（Chimera Linux などmusl環境を含む）の場合は venv を使います。`start_studio.py` は `.venv` があれば自動でそれを使います。
 ```sh
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
-cd project && npm ci && cd ..
+cd frontend && npm ci && cd ..
 python3 start_studio.py          # 停止: python3 start_studio.py --stop
 ```
 
@@ -196,22 +173,12 @@ python start_studio.py --stop
 ※ フロントエンド単体でもクライアント側ML推論フォールバックにより、地図スキャン・地下埋設CAD・3Dスタジオのすべての機能が動作します。
 
 ```powershell
-cd project
-=======
-##  4. クイックスタート（起動方法）
-
-```powershell
-# ルートディレクトリから一括起動する場合
-python ../start_studio.py
-
-# フロントエンド単体で起動する場合
->>>>>>> 3af0a65ba76d488b6cb8fbe0723cac1a58acb38f
+cd frontend
 npm install
 npm run dev
 ```
 ブラウザで `http://localhost:5173` を開きます。
 
-<<<<<<< HEAD
 #### 2. バックエンド（FastAPI 推論・物理バリデータサーバー）の起動
 ```powershell
 pip install -r requirements.txt
@@ -237,11 +204,11 @@ APIドキュメント（Swagger UI）は `http://127.0.0.1:8000/docs` で確認�
 ## 📂 8. ディレクトリ構成
 
 ```text
-ハッカソンProject/
+-----Project/
 ├── README.md                          # 本ドキュメント
-├── PRESENTER_MANUAL.md                # 発表者用・プロジェクト完全理解＆ピッチ攻略マニュアル
 ├── requirements.txt                   # Pythonバックエンド依存パッケージ一覧
-├── .gitignore                         # Git除外設定 (node_modules, __pycache__, logs等)
+├── pyrightconfig.json                 # Python型検査設定
+├── .gitignore                         # Git除外設定 (node_modules, __pycache__, dist, logs等)
 ├── start_studio.py                    # バックエンド＆フロントエンド一括起動・ヘルスチェックスクリプト
 ├── start_studio.bat                   # Windows用ワンクリック起動バッチ
 ├── schema/
@@ -252,18 +219,31 @@ APIドキュメント（Swagger UI）は `http://127.0.0.1:8000/docs` で確認�
 │   ├── dataset_generator.py           # 3層BIM学習データ生成器（住宅・商業・クリニック・ラボ対応）
 │   ├── verify_pipeline.py             # E2Eパイプライン検証＆SVG図面エクスポーター
 │   └── train_qlora.py                 # SLM用 QLoRA ファインチューニングスクリプト
-└── project/                           # フロントエンドアプリケーション (Vite + React + Three.js)
+├── data/
+│   ├── train_stratum_bim.jsonl        # 3層BIM学習データセット
+│   └── sample_stratum_plan.svg        # サンプル図面（SVG）
+├── models/
+│   └── stratum-arch-slm-lora/         # QLoRAファインチューニング済みアダプタ
+└── frontend/                          # フロントエンドアプリケーション (Vite + React + Three.js)
     ├── index.html
     ├── package.json
-    ├── main.tsx                       # エントリーポイント
-    ├── Root.tsx                       # 画面遷移ルーター (Welcome -> Map -> Wizard -> Studio)
-    ├── Welcome.tsx                    # ランディング画面・4フェーズ解説＆デモツアー起動
-    ├── LandMapExplorer.tsx            # フィールドGISマップ探索・土地スキャン・即時CADドロワー
-    ├── realSiteData.ts                # OpenStreetMap / 国土地理院 リアルタイム空間データ解析＆ML連携
-    ├── SubsurfaceInferenceEngine.tsx  # 地下埋設推論ロジック＆多角形測量CAD（平面伏図＋GL断面図）描画
-    ├── ArchitecturalDrawings.tsx      # JIS建築CAD平面詳細図・建具シンボル・階層アクソメ図レンダラー
-    ├── Wizard.tsx                     # 地下埋設整合・新築プラン3案比較ウィザード
-    └── ai_bim_3d.tsx                  # Three.js 3D地下X線透視＆3層BIMインタラクティブスタジオ
+    ├── tsconfig.json
+    ├── vite.config.ts
+    └── src/
+        ├── main.tsx                   # エントリーポイント
+        ├── index.css                  # Tailwind CSSテーマ定義
+        ├── Root.tsx                   # 画面遷移ルーター (Welcome -> Map -> Wizard -> Studio)
+        ├── components/                # 再利用UIコンポーネント
+        │   └── ThemeToggle.tsx        # ライト/ダークテーマ切替ボタン
+        ├── pages/                     # 画面単位のコンポーネント
+        │   ├── Welcome.tsx            # ランディング画面・4フェーズ解説＆デモツアー起動
+        │   ├── LandMapExplorer.tsx    # フィールドGISマップ探索・土地スキャン・即時CADドロワー
+        │   ├── Wizard.tsx             # 地下埋設整合・新築プラン3案比較ウィザード
+        │   └── ai_bim_3d.tsx          # Three.js 3D地下X線透視＆3層BIMインタラクティブスタジオ
+        └── lib/                       # ドメインロジック・データレイヤ
+            ├── realSiteData.ts        # OpenStreetMap / 国土地理院 リアルタイム空間データ解析＆ML連携
+            ├── SubsurfaceInferenceEngine.tsx  # 地下埋設推論ロジック＆多角形測量CAD（平面伏図＋GL断面図）描画
+            └── ArchitecturalDrawings.tsx  # JIS建築CAD平面詳細図・建具シンボル・階層アクソメ図レンダラー
 ```
 
 ---
